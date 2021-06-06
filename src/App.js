@@ -43,8 +43,9 @@ export default class App extends Component {
             )}
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
-            <Route path='/profile' component={Profile} />
             <SecuredRoute path='/dashboard' component={Dashboard} />
+            <SecuredRoute path='/profile' component={Profile} />
+            <Route path='/' exact component={Login} />
             {isLoggedIn() && <Footer />}
           </div>
         </Switch>
