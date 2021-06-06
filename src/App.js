@@ -42,7 +42,6 @@ export default class App extends Component {
               </>
             )}
             <Route path='/register' component={Register} />
-            <Route path='/' component={Login} />
             <Route path='/login' component={Login} />
             <Route path='/profile' component={Profile} />
             <SecuredRoute path='/dashboard' component={Dashboard} />
