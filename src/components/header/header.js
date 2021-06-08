@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 import { withRouter, Link } from 'react-router-dom';
 
 class Header extends Component {
-  Logout = () => {
+  Logout = (e) => {
     swal('Are your sure SignOut?', {
       buttons: {
         nope: {

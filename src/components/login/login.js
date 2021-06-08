@@ -3,12 +3,14 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
+import Recaptcha from 'react-recaptcha';
 import { Link } from 'react-router-dom';
 const LoginSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'username is Too Short!')
     .max(50, 'username is Too Long!')
     .required('Username is Required'),
+  recaptcha: Yup.string().required(),
   password: Yup.string().required('Password is required'),
 });
 
@@ -21,7 +23,16 @@ class Login extends Component {
     };
   }
 
+  initilizeRecaptcha = (async) => {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  };
+
   componentDidMount() {
+    this.initilizeRecaptcha();
     if (localStorage.getItem('TOKEN_KEY') != null) {
       return this.props.history.push('/dashboard');
     }
@@ -114,6 +125,21 @@ class Login extends Component {
             </small>
           ) : null}
         </div>
+        <div className='form-group'>
+          <label>Recaptcha Validation</label>
+          <Recaptcha
+            sitekey={process.env.REACT_APP_RECAPTCHA_KEY}
+            render='explicit'
+            theme='light'
+            verifyCallback={(response) => {
+              setFieldValue('recaptcha', response);
+            }}
+            onLoadBack={() => {
+              console.log('done loading!');
+            }}
+          />
+          {errors.recaptcha && touched.recaptcha && <p>{errors.recaptcha}</p>}
+        </div>
         <div class='row'>
           <div class='col-8'>
             <div class='icheck-primary'>
@@ -152,10 +178,12 @@ class Login extends Component {
                 initialValues={{
                   username: '',
                   password: '',
+                  recaptcha: '',
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   this.submitForm(values, this.props.history);
                   setSubmitting(false);
+                  console.log(values);
                 }}
                 validationSchema={LoginSchema}
               >
