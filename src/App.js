@@ -13,43 +13,43 @@ import {
   Switch,
 } from 'react-router-dom';
 
-const isLoggedIn = () => {
-  return localStorage.getItem('TOKEN_KEY') != null;
+import * as loginActions from './actions/login.action';
+import { useDispatch, useSelector } from 'react-redux';
+
+//Protected Route
+
+const App = (props) => {
+  // const {pathname} = this.props.location;
+  useSelector(({ loginReducer }) => loginReducer);
+  const SecuredRoute = ({ component: Component, ...rest }) => (
+    <Route
+      {...rest}
+      render={(props) =>
+        // ternary condition
+
+        loginActions.isLoggedIn() === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to='/login' />
+        )
+      }
+    />
+  );
+  return (
+    <Router>
+      <Switch>
+        <div>
+          {loginActions.isLoggedIn() && <Header />}
+          {loginActions.isLoggedIn() && <Sidebar />}
+          <Route path='/register' component={Register} />
+          <Route path='/login/:notify?' component={Login} />
+          <SecuredRoute path='/dashboard' component={Dashboard} />
+          <SecuredRoute path='/profile' component={Profile} />
+          <Route path='/' exact component={Login} />
+          {loginActions.isLoggedIn() && <Footer />}
+        </div>
+      </Switch>
+    </Router>
+  );
 };
-
-const SecuredRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      isLoggedIn() === true ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to='/login' />
-      )
-    }
-  />
-);
-
-export default class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Switch>
-          <div>
-            {isLoggedIn() && (
-              <>
-                <Header /> <Sidebar />
-              </>
-            )}
-            <Route path='/register' component={Register} />
-            <Route path='/login' component={Login} />
-            <SecuredRoute path='/dashboard' component={Dashboard} />
-            <SecuredRoute path='/profile' component={Profile} />
-            <Route path='/' exact component={Login} />
-            {isLoggedIn() && <Footer />}
-          </div>
-        </Switch>
-      </Router>
-    );
-  }
-}
+export default App;

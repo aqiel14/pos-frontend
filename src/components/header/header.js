@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import swal from 'sweetalert';
 import { withRouter, Link } from 'react-router-dom';
+import { server } from '../../constants';
 
 class Header extends Component {
   Logout = (e) => {
@@ -19,7 +20,7 @@ class Header extends Component {
       switch (value) {
         case 'sure':
           swal(' SignOut Successfully', 'success').then((val) => {
-            localStorage.removeItem('TOKEN_KEY');
+            localStorage.removeItem(server.TOKEN_KEY);
             return this.props.history.push('/login');
           });
           break;
@@ -76,7 +77,7 @@ class Header extends Component {
 
           <li className='nav-item dropdown'>
             <a className='nav-link' data-toggle='dropdown' href='#'>
-              <i className='far fa-user' />
+              <i className='fas fa-snowboarding' />
             </a>
 
             <div className='dropdown-menu dropdown-menu-lg dropdown-menu-right'>

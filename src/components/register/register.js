@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
-import swal from 'sweetalert';
+// import axios from 'axios';
+// import swal from 'sweetalert';
 import Recaptcha from 'react-recaptcha';
+import * as registerActions from './../../actions/register.action';
+import { useSelector, useDispatch } from 'react-redux';
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
     .min(2, 'username is Too Short!')
@@ -18,34 +20,10 @@ const SignupSchema = Yup.object().shape({
   ),
 });
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
+export default (props) => {
+  const dispatch = useDispatch();
 
-    this.state = {
-      alert: null,
-    };
-  }
-
-  submitForm = (values, history) => {
-    axios
-      .post(process.env.REACT_APP_API_URL + 'register', values)
-      .then((res) => {
-        console.log(res.data.result);
-        if (res.data.result === 'success') {
-          swal('Success!', res.data.message, 'success').then((value) => {
-            history.push('/login');
-          });
-        } else if (res.data.result === 'error') {
-          swal('Error!', res.data.message, 'error');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        swal('Error!', 'Unexpected error', 'error');
-      });
-  };
-  showForm = ({
+  function showForm({
     values,
     errors,
     touched,
@@ -53,7 +31,7 @@ class Register extends Component {
     handleSubmit,
     setFieldValue,
     isSubmitting,
-  }) => {
+  }) {
     return (
       <form onSubmit={handleSubmit}>
         <div className='form-group has-feedback'>
@@ -160,7 +138,7 @@ class Register extends Component {
             <button
               type='button'
               onClick={() => {
-                this.props.history.push('/login');
+                props.history.push('/login');
               }}
               className='btn btn-default btn-block btn-flat'
             >
@@ -171,45 +149,42 @@ class Register extends Component {
         </div>
       </form>
     );
-  };
-
-  render() {
-    return (
-      <div className='register-page'>
-        <div className='register-box'>
-          <div className='register-logo'>
-            <a href='../../index2.html'>
-              <b>Basic</b>POS
-            </a>
-          </div>
-          <div className='card'>
-            <div className='card-body register-card-body'>
-              <p className='login-box-msg'>Register a new membership</p>
-
-              <Formik
-                initialValues={{
-                  fullname: '',
-                  email: '',
-                  password: '',
-                  confirm_password: '',
-                }}
-                onSubmit={(values, { setSubmitting }) => {
-                  this.submitForm(values, this.props.history);
-                  setSubmitting(false);
-                }}
-                validationSchema={SignupSchema}
-              >
-                {/* {this.showForm()}            */}
-                {(props) => this.showForm(props)}
-              </Formik>
-            </div>
-            {/* /.form-box */}
-          </div>
-          {/* /.card */}
-        </div>
-      </div>
-    );
   }
-}
 
-export default Register;
+  return (
+    <div className='register-page'>
+      <div className='register-box'>
+        <div className='register-logo'>
+          <a href='../../index2.html'>
+            <b>Basic</b>POS
+          </a>
+        </div>
+        <div className='card'>
+          <div className='card-body register-card-body'>
+            <p className='login-box-msg'>Register a new membership</p>
+
+            <Formik
+              initialValues={{
+                fullname: '',
+                email: '',
+                password: '',
+                confirm_password: '',
+                recaptcha: '',
+              }}
+              onSubmit={(values, { setSubmitting }) => {
+                dispatch(registerActions.register(values, props.history));
+                setSubmitting(false);
+              }}
+              validationSchema={SignupSchema}
+            >
+              {/* {this.showForm()}            */}
+              {(props) => showForm(props)}
+            </Formik>
+          </div>
+          {/* /.form-box */}
+        </div>
+        {/* /.card */}
+      </div>
+    </div>
+  );
+};

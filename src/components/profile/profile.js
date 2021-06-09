@@ -4,8 +4,10 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import swal from 'sweetalert';
 import fs from 'fs';
+import { server } from '../../constants';
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
+
 const ProfileSchema = Yup.object().shape({
   avatars: Yup.mixed()
     .required('A file is required')
@@ -53,7 +55,7 @@ class Profile extends Component {
   }
 
   parseJwt() {
-    let token = localStorage.getItem('TOKEN_KEY');
+    let token = localStorage.getItem(server.TOKEN_KEY);
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(
