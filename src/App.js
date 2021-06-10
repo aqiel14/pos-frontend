@@ -6,9 +6,12 @@ import Dashboard from './components/dashboard';
 import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
-import PosMachineCreate from './components/posmachine_create';
-import PosMachineIndex from './components/posmachine_index';
-import PosMachineUpdate from './components/posmachine_update';
+import PosMachineCreate from './components/posmachine/create';
+import PosMachineIndex from './components/posmachine/index';
+import PosMachineUpdate from './components/posmachine/update';
+import BranchCreate from './components/branch/create';
+import BranchUpdate from './components/branch/update';
+import BranchIndex from './components/branch/index';
 import {
   BrowserRouter as Router,
   Route,
@@ -57,6 +60,9 @@ const App = (props) => {
             path='/posmachine/update/:id'
             component={PosMachineUpdate}
           />
+          <SecuredRoute exact path='/branch/' component={BranchIndex} />
+          <SecuredRoute path='/branch/create' component={BranchCreate} />
+          <SecuredRoute path='/branch/update/:id' component={BranchUpdate} />
           <Route path='/' exact component={Login} />
           {loginActions.isLoggedIn() && <Footer />}
         </div>
