@@ -6,6 +6,9 @@ import Dashboard from './components/dashboard';
 import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
+import PosMachineCreate from './components/posmachine_create';
+import PosMachineIndex from './components/posmachine_index';
+import PosMachineUpdate from './components/posmachine_update';
 import {
   BrowserRouter as Router,
   Route,
@@ -45,6 +48,15 @@ const App = (props) => {
           <Route path='/login/:notify?' component={Login} />
           <SecuredRoute path='/dashboard' component={Dashboard} />
           <SecuredRoute path='/profile' component={Profile} />
+          <SecuredRoute exact path='/posmachine/' component={PosMachineIndex} />
+          <SecuredRoute
+            path='/posmachine/create'
+            component={PosMachineCreate}
+          />
+          <SecuredRoute
+            path='/posmachine/update/:id'
+            component={PosMachineUpdate}
+          />
           <Route path='/' exact component={Login} />
           {loginActions.isLoggedIn() && <Footer />}
         </div>
