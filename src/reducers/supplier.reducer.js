@@ -1,9 +1,8 @@
 import {
-  BRANCH_FETCHING,
-  BRANCH_SUCCESS,
-  BRANCH_FAILED,
-  BRANCH_CLEAR,
-  FETCHOPTION_SUCCESS,
+  SUPPLIER_FETCHING,
+  SUPPLIER_SUCCESS,
+  SUPPLIER_FAILED,
+  SUPPLIER_CLEAR,
 } from '../constants';
 
 const initialState = {
@@ -14,16 +13,14 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
-    case BRANCH_FETCHING:
+    case SUPPLIER_FETCHING:
       return { ...state, isFetching: true, isError: false, result: null };
-    case BRANCH_FAILED:
+    case SUPPLIER_FAILED:
       return { ...state, isFetching: false, isError: true, result: null };
-    case BRANCH_SUCCESS:
+    case SUPPLIER_SUCCESS:
       return { ...state, isFetching: false, isError: false, result: payload };
-    case BRANCH_CLEAR:
+    case SUPPLIER_CLEAR:
       return { ...state, result: null, isFetching: false, isError: false };
-    case FETCHOPTION_SUCCESS:
-      return { ...state, isFetching: false, isError: false, options: payload };
     default:
       return state;
   }

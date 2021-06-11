@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import * as branchActions from '../../actions/branch.action';
+import * as supplierActions from '../../actions/supplier.action';
 import { server } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+
 export default (props) => {
-  const branchReducer = useSelector(({ branchReducer }) => branchReducer);
+  const supplierReducer = useSelector(({ supplierReducer }) => supplierReducer);
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
       return props.history.push('/login');
     }
-    dispatch(branchActions.Index());
+    dispatch(supplierActions.Index());
   }, []);
 
   function confirmDelete(id) {
@@ -23,13 +24,14 @@ export default (props) => {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        dispatch(branchActions.Remove(id));
-        swal('Poof! Your Branch data has been deleted!', {
+        dispatch(supplierActions.Remove(id));
+        swal('Poof! Your Supplier data has been deleted!', {
           icon: 'success',
         });
       }
     });
   }
+
   return (
     <div className='content-wrapper'>
       {/* Content Header (Page header) */}
@@ -37,7 +39,7 @@ export default (props) => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1 className='m-0 text-dark'>Branch Data</h1>
+              <h1 className='m-0 text-dark'>Supplier Data</h1>
             </div>
           </div>
           {/* /.row */}
@@ -51,9 +53,10 @@ export default (props) => {
             <div className='col-12'>
               <div className='card'>
                 <div className='card-header'>
+                  <h3 className='card-title'></h3>
                   <div className='card-tools'>
                     <div className='input-group input-group-sm'>
-                      <Link to='/branch/create'>
+                      <Link to='/supplier/create'>
                         <button type='submit' className='btn btn-default'>
                           <i className='fas fa-plus' />
                         </button>
@@ -66,46 +69,26 @@ export default (props) => {
                   <table className='table table-hover text-nowrap'>
                     <thead>
                       <tr>
-                        <th>Front Image</th>
                         <th>Name</th>
+                        <th>Vat</th>
                         <th>Address</th>
-                        <th>POS</th>
-                        <th>Created Date</th>
+                        <th>Email</th>
+                        <th>TEL.</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {branchReducer.result ? (
-                        branchReducer.result.map((data, index) => {
+                      {supplierReducer.result ? (
+                        supplierReducer.result.map((data, index) => {
                           return (
                             <tr key={index}>
-                              <td>
-                                <img
-                                  class='img-fluid img-rounded'
-                                  width={200}
-                                  src={
-                                    process.env
-                                      .REACT_APP_BRANCH_FRONT_IMAGE_PATH +
-                                    '/' +
-                                    data.frontimage
-                                  }
-                                />
-                              </td>
                               <td>{data.name}</td>
+                              <td>{data.vat}</td>
                               <td>{data.address}</td>
+                              <td>{data.email}</td>
+                              <td>{data.tel}</td>
                               <td>
-                                {data.pos_machines.map((value) => {
-                                  return value.alias + ',';
-                                })}
-                              </td>
-                              <td>{data.created}</td>
-                              <td>
-                                <Link
-                                  to={'/branch/update/' + data._id}
-                                  onClick={() =>
-                                    dispatch(branchActions.clearState())
-                                  }
-                                >
+                                <Link to={'/supplier/update/' + data._id}>
                                   Edit
                                 </Link>
                                 {' | '}
@@ -117,10 +100,7 @@ export default (props) => {
                           );
                         })
                       ) : (
-                        <tr>
-                          {' '}
-                          <td> No data </td>
-                        </tr>
+                        <td> No data </td>
                       )}
                     </tbody>
                   </table>
