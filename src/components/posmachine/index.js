@@ -15,12 +15,19 @@ import * as moment from 'moment';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
-const Pos_Machine_Index = (props) => {
+export default (props) => {
   const posmachineReducer = useSelector(
     ({ posmachineReducer }) => posmachineReducer
   );
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
+  const [skipPageReset, setSkipPageReset] = React.useState(false);
+  const updateMyData = (rowIndex, columnId, value) => {
+    // We also turn on the flag to not reset the page
+    setSkipPageReset(true);
+    let values = { _id: rowIndex, column: columnId, value: value };
+    dispatch(posmachineActions.inline_update(values));
+  };
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
       return props.history.push('/login');
@@ -94,7 +101,15 @@ const Pos_Machine_Index = (props) => {
   );
   const Holdon = (columns) => {
     if (posmachineReducer.result) {
-      return <Table columns={columns} data={posmachineReducer.result} />;
+      return (
+        <Table
+          columns={columns}
+          data={posmachineReducer.result}
+          parent_action={posmachineActions}
+          updateMyData={updateMyData}
+          skipPageReset={skipPageReset}
+        />
+      );
     } else {
       return <img class='img-fluid img-rounded' src={loading} width='30%' />;
     }
@@ -146,4 +161,3 @@ const Pos_Machine_Index = (props) => {
     </div>
   );
 };
-export default Pos_Machine_Index;

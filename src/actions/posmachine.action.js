@@ -28,6 +28,22 @@ export const clearState = () => {
   };
 };
 
+export const bulk_delete = (id) => {
+  return async (dispatch) => {
+    dispatch(setPOSMachineStateToFetching());
+    const response = await httpClient.delete(
+      process.env.REACT_APP_API_URL + 'pos_machine/bulk_delete/' + id
+    );
+    if (response.data.result == 'success') {
+      dispatch(setPOSMachineStateToSuccess());
+      dispatch(index());
+    } else if (response.data.result === 'error') {
+      dispatch(setPOSMachineStateToFailed());
+      swal('Error!', response.data.message, 'error');
+    }
+  };
+};
+
 export const remove = (id) => {
   return async (dispatch) => {
     console.log('remove');
@@ -110,6 +126,22 @@ export const create = (values, history) => {
       });
     } else if (response.data.result === 'error') {
       dispatch(setPOSMachineStateToFailed());
+      swal('Error!', response.data.message, 'error');
+    }
+  };
+};
+
+export const inline_update = (values, history) => {
+  return async (dispatch) => {
+    // dispatch(setPOSMachineStateToFetching());
+    const response = await httpClient.put(
+      process.env.REACT_APP_API_URL + 'pos_machine/inline_update',
+      values
+    );
+    if (response.data.result == 'success') {
+      // dispatch(setPOSMachineStateToClear());
+    } else if (response.data.result === 'error') {
+      // dispatch(setPOSMachineStateToFailed());
       swal('Error!', response.data.message, 'error');
     }
   };
