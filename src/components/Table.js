@@ -195,7 +195,7 @@ export default function Table({
       defaultColumn,
       updateMyData,
       skipPageReset,
-      initialState: { pageIndex: 2 },
+      initialState: { pageIndex: 0 },
       getExportFileBlob,
     },
     useFilters,
