@@ -75,6 +75,14 @@ export default () => {
                   </Link>
                 </li>
               </Admin>
+              <Admin>
+                <li className='nav-item'>
+                  <Link to='/product' className='nav-link'>
+                    <i className='nav-icon fas fa-truck' />
+                    <p>Product</p>
+                  </Link>
+                </li>
+              </Admin>
               <li className='nav-item'>
                 <Link to='/supplier' className='nav-link'>
                   <i className='nav-icon fas fa-id-card' />

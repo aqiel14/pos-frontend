@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/header';
 import Sidebar from './components/sidebar';
-import Footer from './components/footer';
+import Footer from './components/footer/';
 import Dashboard from './components/dashboard';
 import Login from './components/login';
 import Register from './components/register';
@@ -15,6 +15,9 @@ import BranchIndex from './components/branch/index';
 import SupplierCreate from './components/supplier/create';
 import SupplierUpdate from './components/supplier/update';
 import SupplierIndex from './components/supplier/index';
+import ProductCreate from './components/product/create';
+import ProductUpdate from './components/product/update';
+import ProductIndex from './components/product/index';
 import {
   BrowserRouter as Router,
   Route,
@@ -72,6 +75,9 @@ const App = (props) => {
             path='/supplier/update/:id'
             component={SupplierUpdate}
           />
+          <SecuredRoute exact path='/product/' component={ProductIndex} />
+          <SecuredRoute path='/product/create' component={ProductCreate} />
+          <SecuredRoute path='/product/update/:id' component={ProductUpdate} />
 
           <Route path='/' exact component={Login} />
           {loginActions.isLoggedIn() && <Footer />}
