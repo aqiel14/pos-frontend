@@ -42,7 +42,9 @@ export default () => {
       <aside className='main-sidebar sidebar-dark-primary elevation-4'>
         {/* Brand Logo */}
         <a href='../../index3.html' className='brand-link'>
-          <span className='brand-text font-weight-light'>BasicPOS</span>
+          <span className='brand-text font-weight-light'>
+            UMKM-SharedService
+          </span>
         </a>
         {/* Sidebar */}
         <div className='sidebar'>

@@ -5,10 +5,10 @@ class Footer extends Component {
     return (
       <footer className='main-footer'>
         <div className='float-right d-none d-sm-block'>
-          <b>Version</b> 3.0.2-pre
+          <b>BY Aqiel,Hakim,Ilham</b> Made with DEPRESSION,SWEAT AND BLOOD
         </div>
         <strong>
-          Copyright © 2014-2019 <a href='http://adminlte.io'>AdminLTE.io</a>.
+          Copyright © 2021 <a href='http://adminlte.io'>UMKM-SharedService</a>.
         </strong>{' '}
         All rights reserved.
       </footer>
