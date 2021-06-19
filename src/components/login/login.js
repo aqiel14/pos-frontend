@@ -17,7 +17,7 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required('Password is required'),
 });
 
-const Login = (props) => {
+export default (props) => {
   const dispatch = useDispatch();
   const loginReducer = useSelector(({ loginReducer }) => loginReducer);
 
@@ -44,24 +44,6 @@ const Login = (props) => {
     }
   }, []);
 
-  // function submitForm(values, history) {
-  //   axios
-  //     .post(process.env.REACT_APP_API_URL + 'login', values)
-  //     .then((res) => {
-  //       if (res.data.result === 'success') {
-  //         localStorage.setItem('TOKEN_KEY', res.data.token);
-  //         swal('Success!', res.data.message, 'success').then((value) => {
-  //           history.push('/dashboard');
-  //         });
-  //       } else if (res.data.result === 'error') {
-  //         swal('Error!', res.data.message, 'error');
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       return swal('Error!', error.message, 'error');
-  //     });
-  // };
   const showForm = ({
     values,
     errors,
@@ -131,9 +113,8 @@ const Login = (props) => {
             theme='light'
             verifyCallback={(response) => {
               setFieldValue('recaptcha', response);
-              console.log(response);
             }}
-            onLoadBack={() => {
+            onloadCallback={() => {
               console.log('done loading!');
             }}
           />
@@ -161,7 +142,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className='login-page'>
+    <div class='login-page'>
       <div className='register-box'>
         <div className='register-logo'>
           <a href='../../index2.html'>
@@ -201,5 +182,3 @@ const Login = (props) => {
     </div>
   );
 };
-
-export default Login;

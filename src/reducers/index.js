@@ -5,6 +5,7 @@ import posmachineReducer from './posmachine.reducer';
 import branchReducer from './branch.reducer';
 import supplierReducer from './supplier.reducer';
 import productReducer from './product.reducer';
+import shopReducer from './shop.reducer';
 export default combineReducers({
   loginReducer,
   registerReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   branchReducer,
   supplierReducer,
   productReducer,
+  shopReducer,
 });

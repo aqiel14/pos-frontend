@@ -119,6 +119,7 @@ export default (props) => {
             theme='light'
             verifyCallback={(response) => {
               setFieldValue('recaptcha', response);
+              console.log(response);
             }}
             onloadCallback={() => {
               console.log('done loading!');

@@ -33,6 +33,13 @@ export const PRODUCT_FAILED = 'PRODUCT_FAILED';
 export const PRODUCT_CLEAR = 'PRODUCT_CLEAR';
 export const FETCH_OPTION_SUCCESS = 'FETCH_OPTION_SUCCESS';
 
+// Shop Page
+export const SHOP_FETCHING = 'SHOP_FETCHING';
+export const SHOP_SUCCESS = 'SHOP_SUCCESS';
+export const SHOP_FAILED = 'SHOP_FAILED';
+export const SHOP_UPDATE_ORDER = 'SHOP_UPDATE_ORDER';
+export const SHOP_UPDATE_PAYMENT = 'SHOP_UPDATE_PAYMENT';
+
 //Forgot password
 // export const FORGOT_FETCHING = "FORGOT_FETCHING";
 // export const FORGOT_SUCCESS = "FORGOT_SUCCESS";
@@ -44,7 +51,7 @@ export const server = {
   REFRESH_TOKEN_URL: `refresh/token`,
   REGISTER_URL: `register`,
   PRODUCT_URL: `product`,
-  TRANSACTION_URL: `transaction`,
+  ORDER_URL: `order`,
   REPORT_URL: `report`,
   TOKEN_KEY: `token`,
   REFRESH_TOKEN_KEY: `refresh_token`,
