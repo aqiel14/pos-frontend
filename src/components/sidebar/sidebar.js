@@ -89,6 +89,12 @@ export default () => {
                   <p>Supplier</p>
                 </Link>
               </li>
+              <li className='nav-item'>
+                <Link to='/order' className='nav-link'>
+                  <i className='fas fa-cash-register' />
+                  <p>Order</p>
+                </Link>
+              </li>
             </ul>
           </nav>
           {/* /.sidebar-menu */}

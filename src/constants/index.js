@@ -40,6 +40,11 @@ export const SHOP_FAILED = 'SHOP_FAILED';
 export const SHOP_UPDATE_ORDER = 'SHOP_UPDATE_ORDER';
 export const SHOP_UPDATE_PAYMENT = 'SHOP_UPDATE_PAYMENT';
 
+//DASHBOARD STATS
+export const STAT_FETCHING = 'STAT_FETCHING';
+export const STAT_SUCCESS = 'STAT_SUCCESS';
+export const STAT_FAILED = 'STAT_FAILED';
+
 //Forgot password
 // export const FORGOT_FETCHING = "FORGOT_FETCHING";
 // export const FORGOT_SUCCESS = "FORGOT_SUCCESS";
@@ -55,6 +60,7 @@ export const server = {
   REPORT_URL: `report`,
   TOKEN_KEY: `token`,
   REFRESH_TOKEN_KEY: `refresh_token`,
+  STAT_ENDPOINT: `stat`,
 };
 
 export const Roles = [

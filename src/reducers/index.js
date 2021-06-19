@@ -6,6 +6,7 @@ import branchReducer from './branch.reducer';
 import supplierReducer from './supplier.reducer';
 import productReducer from './product.reducer';
 import shopReducer from './shop.reducer';
+import statReducer from './stat.reducer';
 export default combineReducers({
   loginReducer,
   registerReducer,
@@ -14,4 +15,5 @@ export default combineReducers({
   supplierReducer,
   productReducer,
   shopReducer,
+  statReducer,
 });
