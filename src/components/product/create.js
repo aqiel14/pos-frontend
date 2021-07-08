@@ -8,6 +8,14 @@ import { server } from '../../constants';
 export default (props) => {
   const dispatch = useDispatch();
 
+  const decodeJWT = (token) => {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
+  };
+
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
       return props.history.push('/login');
@@ -27,6 +35,7 @@ export default (props) => {
       />
     );
   };
+
   const showForm = ({
     values,
     errors,
@@ -41,6 +50,7 @@ export default (props) => {
         <div class='card-body'>
           <div class='form-group '>{showPreviewImage(values)}</div>
           <div class='form-group '>
+            <input name='id' onChange={handleChange} value={values.id} />
             <div class='input-group col-5'>
               <div class='custom-file'>
                 <label class='custom-file-label' for='exampleInputFile'>
@@ -160,11 +170,13 @@ export default (props) => {
 
           <Formik
             initialValues={{
+              id: decodeJWT(localStorage.getItem(server.TOKEN_KEY)).id,
               name: '',
               address: '',
             }}
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
+              formData.append('user_id', values.id);
               formData.append('name', values.name);
               formData.append('stock', values.stock);
               formData.append('price', values.price);

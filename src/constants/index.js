@@ -45,6 +45,11 @@ export const STAT_FETCHING = 'STAT_FETCHING';
 export const STAT_SUCCESS = 'STAT_SUCCESS';
 export const STAT_FAILED = 'STAT_FAILED';
 
+export const ORDER_FETCHING = 'ORDER_FETCHING';
+export const ORDER_SUCCESS = 'ORDER_SUCCESS';
+export const ORDER_FAILED = 'ORDER_FAILED';
+export const ORDER_CLEAR = 'ORDER_CLEAR';
+
 //Forgot password
 // export const FORGOT_FETCHING = "FORGOT_FETCHING";
 // export const FORGOT_SUCCESS = "FORGOT_SUCCESS";

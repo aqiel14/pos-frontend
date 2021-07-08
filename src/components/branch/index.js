@@ -52,8 +52,8 @@ export default (props) => {
         ),
       },
       {
-        Header: 'Name',
-        accessor: 'name', // accessor is the "key" in the data
+        Header: 'Alias',
+        accessor: 'alias', // accessor is the "key" in the data
       },
       {
         Header: 'Address',

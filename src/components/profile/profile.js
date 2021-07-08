@@ -7,7 +7,6 @@ import fs from 'fs';
 import { server } from '../../constants';
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
-
 const ProfileSchema = Yup.object().shape({
   avatars: Yup.mixed()
     .required('A file is required')
@@ -76,7 +75,6 @@ class Profile extends Component {
   }
 
   showPreviewImage = (values) => {
-    console.log(this.state.response.avatar);
     return (
       <div class='text-center'>
         <img
@@ -84,7 +82,7 @@ class Profile extends Component {
           src={
             values.file_obj != null
               ? values.file_obj
-              : process.env.REACT_APP_BACKEND_URL + 'images/user.png'
+              : process.env.REACT_APP_BACKEND_URL + '/images/user.png'
           }
           class='profile-user-img img-fluid img-circle'
           width={100}
@@ -98,7 +96,7 @@ class Profile extends Component {
       .then((response) => {
         console.log(response.data);
         document.getElementById('avatars').src =
-          process.env.REACT_APP_BACKEND_URL + 'images/' + response.data.avatars;
+          process.env.REACT_APP_USER_IMAGE_PATH + '/' + response.data.avatars;
         // profile.setAttribute("src",);
         this.setState({ response: response.data });
       })

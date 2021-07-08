@@ -48,9 +48,9 @@ export default (props) => {
           <div className='form-group input-group has-feedback'>
             <input
               type='text'
-              name='name'
+              name='alias'
               onChange={handleChange}
-              value={values.name}
+              value={values.alias}
               className='form-control'
               placeholder='Branch Name'
               className={
@@ -194,12 +194,12 @@ export default (props) => {
 
           <Formik
             initialValues={{
-              name: '',
+              alias: '',
               address: '',
             }}
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
-              formData.append('name', values.name);
+              formData.append('alias', values.alias);
               formData.append('tel', values.tel);
               formData.append('address', values.address);
               let result = multiselect.map((arr) => arr.value);

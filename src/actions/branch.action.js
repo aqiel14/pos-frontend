@@ -4,6 +4,7 @@ import {
   BRANCH_FAILED,
   BRANCH_CLEAR,
   FETCHOPTION_SUCCESS,
+  server,
 } from '../constants';
 import swal from 'sweetalert';
 import { httpClient } from './../utils/HttpClient';

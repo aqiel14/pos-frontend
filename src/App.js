@@ -19,6 +19,7 @@ import ProductCreate from './components/product/create';
 import ProductUpdate from './components/product/update';
 import ProductIndex from './components/product/index';
 import CreateOrder from './components/order/create';
+import OrderIndex from './components/order/index';
 import {
   BrowserRouter as Router,
   Route,
@@ -81,6 +82,7 @@ const App = (props) => {
           <SecuredRoute path='/product/update/:id' component={ProductUpdate} />
 
           <SecuredRoute exact path='/order/create' component={CreateOrder} />
+          <SecuredRoute exact path='/order/' component={OrderIndex} />
 
           <Route path='/' exact component={Login} />
           {loginActions.isLoggedIn() && <Footer />}

@@ -14,7 +14,7 @@ export default (props) => {
   const renderPayment = () => {
     return (
       <div className='col-md-8' style={{ maxHeight: 710 }}>
-        <Payment order={JSON.stringify(shopReducer.mOrderLines)} />
+        <Payment order={shopReducer.mOrderLines} />
       </div>
     );
   };

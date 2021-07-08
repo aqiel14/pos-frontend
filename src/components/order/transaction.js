@@ -6,9 +6,9 @@ export class TransactionRequest {
   total = 0;
   paid = 0;
   change = 0;
-  order_list = 'x';
+  order_list = [];
   payment_type = 'x';
   payment_detail = 'x';
-  staff_id = 'x';
+  user_id = 'x';
   comment = 'x';
 }

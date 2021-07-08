@@ -7,7 +7,7 @@ import { Formik, Form, Field } from 'formik';
 export default (props) => {
   const shopReducer = useSelector(({ shopReducer }) => shopReducer);
   const dispatch = useDispatch();
-  const [staff_id, setStaff_id] = useState();
+  const [user_id, setUser_id] = useState();
   useEffect(() => {
     getcurrentRole();
   }, []);
@@ -26,7 +26,7 @@ export default (props) => {
 
     let { id } = JSON.parse(jsonPayload);
     console.log(id);
-    setStaff_id(id);
+    setUser_id(id);
   };
 
   const isMustChanged = (values) => {
@@ -65,8 +65,9 @@ export default (props) => {
     trans.change = values.change;
     trans.payment_type = 'cash';
     trans.payment_detail = 'full';
-    trans.staff_id = staff_id;
+    trans.user_id = user_id;
     trans.order_list = props.order;
+    console.log(props.order);
     dispatch(shopActions.submitPayment(trans));
   };
 
