@@ -53,8 +53,9 @@ const App = (props) => {
     <Router>
       <Switch>
         <div>
-          {loginActions.isLoggedIn() && <Header />}
           {loginActions.isLoggedIn() && <Sidebar />}
+          {loginActions.isLoggedIn() && <Header />}
+
           <Route path='/register' component={Register} />
           <Route path='/login/:notify?' component={Login} />
           <SecuredRoute path='/dashboard' component={Dashboard} />
