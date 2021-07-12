@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/header';
 import Sidebar from './components/sidebar';
 import Footer from './components/footer/';
-import Dashboard from './components/dashboard';
+import SalesDashboard from './components/salesdashboard';
 import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
@@ -58,7 +58,7 @@ const App = (props) => {
 
           <Route path='/register' component={Register} />
           <Route path='/login/:notify?' component={Login} />
-          <SecuredRoute path='/dashboard' component={Dashboard} />
+          <SecuredRoute path='/sales/dashboard' component={SalesDashboard} />
           <SecuredRoute path='/profile' component={Profile} />
           <SecuredRoute exact path='/posmachine/' component={PosMachineIndex} />
           <SecuredRoute

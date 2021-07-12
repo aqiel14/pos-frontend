@@ -56,46 +56,116 @@ export default () => {
               data-accordion='false'
             >
               <li className='nav-item'>
-                <Link to='/dashboard' className='nav-link'>
-                  <i className='nav-icon fas fa-tachometer-alt' />
-                  <p>Dashboard</p>
-                </Link>
-              </li>
-              <Admin>
-                <li className='nav-item'>
-                  <Link to='/posmachine' className='nav-link'>
-                    <i className='nav-icon fas fa-th' />
-                    <p>Pos Machine</p>
-                  </Link>
-                </li>
-              </Admin>
-              <Admin>
-                <li className='nav-item'>
-                  <Link to='/branch' className='nav-link'>
-                    <i className='nav-icon fas fa-building' />
-                    <p>Branch</p>
-                  </Link>
-                </li>
-              </Admin>
-
-              <li className='nav-item'>
-                <Link to='/product' className='nav-link'>
-                  <i className='nav-icon fas fa-truck' />
-                  <p>Product</p>
+                <Link to='/home' className='nav-link'>
+                  <i className='nav-icon fas fa-home' />
+                  <p>Home</p>
                 </Link>
               </li>
 
               <li className='nav-item'>
-                <Link to='/supplier' className='nav-link'>
-                  <i className='nav-icon fas fa-id-card' />
-                  <p>Supplier</p>
+                <Link to='/posmachine' className='nav-link'>
+                  <i className='nav-icon fas fa-th' />
+                  <p>Pos Machine</p>
                 </Link>
               </li>
+
               <li className='nav-item'>
-                <Link to='/order' className='nav-link'>
-                  <i className='fas fa-cash-register' />
-                  <p>Order</p>
+                <Link to='/branch' className='nav-link'>
+                  <i className='nav-icon fas fa-building' />
+                  <p>Branch</p>
                 </Link>
+              </li>
+              <li class='nav-item'>
+                <a href='#' class='nav-link'>
+                  <i class='nav-icon fas fa-chart-bar'></i>
+                  <p>
+                    Sales<i class='right fas fa-angle-left'></i>
+                  </p>
+                </a>
+                <ul class='nav nav-treeview'>
+                  <li class='nav-item'>
+                    <Link to='/sales/dashboard' className='nav-link'>
+                      <i className='nav-icon fas fa-home' />
+                      <p>Dashboard</p>
+                    </Link>
+                  </li>
+                  <li class='nav-item'>
+                    <Link to='/product' className='nav-link'>
+                      <i className='nav-icon fas fa-truck' />
+                      <p>Product</p>
+                    </Link>
+                  </li>
+                  <li class='nav-item'>
+                    <Link to='/order' className='nav-link'>
+                      <i className='nav-icon fas fa-cash-register' />
+                      <p> Order</p>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+
+              <li class='nav-item'>
+                <a href='#' class='nav-link'>
+                  <i class='nav-icon fas fa-warehouse'></i>
+                  <p>
+                    Warehouse<i class='right fas fa-angle-left'></i>
+                  </p>
+                </a>
+                <ul class='nav nav-treeview'>
+                  <li class='nav-item'>
+                    <a href='#' class='nav-link'>
+                      <i class='nav-icon fas fa-tachometer-alt'></i>
+                      <p>Dashboard</p>
+                    </a>
+                  </li>
+                  <li class='nav-item'>
+                    <Link to='/product' className='nav-link'>
+                      <i className='nav-icon fas fa-truck' />
+                      <p>Product</p>
+                    </Link>
+                  </li>
+                  <li class='nav-item'>
+                    <Link to='/supplier' className='nav-link'>
+                      <i className='nav-icon fas fa-id-card' />
+                      <p>Supplier</p>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
+
+              <li class='nav-item'>
+                <a href='#' class='nav-link'>
+                  <i class='nav-icon fas fa-industry'></i>
+                  <p>
+                    Production<i class='right fas fa-angle-left'></i>
+                  </p>
+                </a>
+                <ul class='nav nav-treeview'>
+                  <li class='nav-item'>
+                    <a href='/productiondashboard' class='nav-link'>
+                      <i class='nav-icon fas fa-tachometer-alt'></i>
+                      <p>Dashboard</p>
+                    </a>
+                  </li>
+                  <li class='nav-item'>
+                    <a href='/listpro' class='nav-link'>
+                      <i class='nav-icon fas fa-industry'></i>
+                      <p>Production</p>
+                    </a>
+                  </li>
+                  <li class='nav-item'>
+                    <a href='/bahan' class='nav-link'>
+                      <i class='nav-icon fas fas fa-pallet'></i>
+                      <p>Production Material</p>
+                    </a>
+                  </li>
+                  <li class='nav-item'>
+                    <a href='/machine' class='nav-link'>
+                      <i class='nav-icon fas fa-cog'></i>
+                      <p>Machine Information</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>

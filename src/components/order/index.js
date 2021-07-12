@@ -48,7 +48,8 @@ export default (props) => {
         accessor: 'created',
         id: 'alias',
         Cell: ({ cell: { value } }) => {
-          return moment(value).format('MMMM Do YYYY, h:mm:ss a');
+          let sliced = value.slice(0, -14);
+          return sliced;
         },
       },
 

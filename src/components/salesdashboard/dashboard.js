@@ -35,8 +35,9 @@ export default (props) => {
       // });
       setOrderstat({ dates });
 
-      console.log(initialdata);
-      console.log(dates);
+      // console.log(initialdata);
+      // console.log(dates);
+      console.log(weekly());
       dates.map((element) => {
         weeklydata(element);
       });
@@ -47,16 +48,19 @@ export default (props) => {
 
   function weekly() {
     const dates = [];
-    const NUM_OF_DAYS = 7; // get last 12 dates.
+    const NUM_OF_DAYS = 7; // get last 7 dates.
 
     for (let i = 0; i < NUM_OF_DAYS; i++) {
       let date = moment();
       date.subtract(i, 'day').format('DD-MM-YYYY');
-      var weekDayName = moment(date).format('dddd');
+      var weekDayName = moment(date).format('dddd Do MMMM');
       dates.push(weekDayName);
     }
 
-    return dates;
+    return moment()
+      .subtract(7, 'days')
+      .startOf('day')
+      .format('YYYY-MM-DD HH:mm:ss');
   }
 
   function tellweeknumber(weeknumber) {
@@ -75,7 +79,7 @@ export default (props) => {
 
   function weeklydata(dates) {
     let day = moment(dates).format('dddd');
-    console.log(day);
+    // console.log(day);
     switch (day) {
       case tellweeknumber(0):
         return (initialdata[0] += 1);
@@ -134,7 +138,7 @@ export default (props) => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1 className='m-0 text-dark'>Dashboard</h1>
+              <h1 className='m-0 text-dark'>Sales Dashboard</h1>
             </div>
             {/* /.col */}
             <div className='col-sm-6'>
@@ -164,7 +168,7 @@ export default (props) => {
                 <div className='card-header'>
                   <h3 className='card-title'>
                     <i className='fas fa-chart-line mr-1' />
-                    Weekly Sales Report
+                    Sales Report
                   </h3>
                   <div className='card-tools'>
                     <ul className='nav nav-pills ml-auto'>
@@ -174,7 +178,7 @@ export default (props) => {
                           href='#revenue-chart'
                           data-toggle='tab'
                         >
-                          Line
+                          Weekly
                         </a>
                       </li>
                       <li className='nav-item'>
