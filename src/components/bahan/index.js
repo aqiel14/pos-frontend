@@ -7,6 +7,7 @@ import swal from 'sweetalert';
 import Table from '../Table';
 import './bahan.css';
 import loading from '../../assets/image/loading.gif';
+import _ from 'lodash';
 export default (props) => {
   const bahanReducer = useSelector(({ bahanReducer }) => bahanReducer);
   const dispatch = useDispatch();
@@ -41,20 +42,33 @@ export default (props) => {
   const columns = React.useMemo(
     () => [
         {
-            Header: 'Product Name',
-            accessor: 'product',
-            Cell: ({ cell: { value } }) => {
-              return value.map((data) => {
-                return (
-                  <span key={data} className='badge'>
-                    {data.name}
-                  </span>
-                );
+            Header: 'Products Name',
+            // id:'hidden_productname',
+            accessor: (data) => {
+              let output = [];
+              _.map(data.product, (data) => {
+                output.push(data.name);
               });
-            },
-          },
+              return output.join(', ');
+          }
+        },
+        // {
+        //   Header: 'Product Name',
+        //   id: 'name',
+        //   accessor:'product',
+        //   Cell: ({ cell: { value } }) => {
+        //     return value.map((data) => {
+        //       return (
+        //         <span key={data} className='badge'>
+        //           {data.name}
+        //         </span>
+        //       );
+        //     });
+        //   }
+        // },
       {
         Header: 'Material Name',
+        id: 'alias',
         accessor: 'materialname', // accessor is the "key" in the data
       },
       {
@@ -63,7 +77,7 @@ export default (props) => {
       },
       {
         Header: 'Materials Needed',
-        accessor: 'materialneeded',
+        accessor: 'materialneeded'
       },
       {
         Header: 'Material Unit',

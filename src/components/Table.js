@@ -26,6 +26,8 @@ export default function Table({ columns, data }) {
         .filter((c) => c.Header != 'Kuantitas')
         .filter((c) => c.Header != 'Nama Produk')
         .filter((c) => c.Header != 'Total')
+        .filter((c) => c.Header != 'Product Name')
+       
         .map((col) => col.exportValue);
       const csvString = Papa.unparse({ fields: headerNames, data });
       return new Blob([csvString], { type: 'text/csv' });
@@ -65,6 +67,10 @@ export default function Table({ columns, data }) {
         .filter((c) => c.Header != 'Kuantitas')
         .filter((c) => c.Header != 'Nama Produk')
         .filter((c) => c.Header != 'Total')
+        
+
+        //.filter((c) => c.Header != 'Product Name')
+
         .map((column) => column.exportValue);
       const doc = new JsPDF();
       doc.autoTable({
@@ -118,6 +124,10 @@ export default function Table({ columns, data }) {
           'hidden_qty',
           'hidden_price',
           'hidden_total',
+          'hidden_productname',
+          
+          
+          
         ],
       },
       getExportFileBlob,
@@ -132,7 +142,7 @@ export default function Table({ columns, data }) {
   const handleFilterChange = (e) => {
     const value = e.target.value || undefined;
     //setFilter("name", value);
-    setFilter('alias', value);
+    setFilter('alias', value, 'name',);
     setFilterInput(value);
   };
 
@@ -188,6 +198,7 @@ export default function Table({ columns, data }) {
                     // If the column can be grouped, let's add a toggle
                     <span {...column.getGroupByToggleProps()}>
                       {column.isGrouped ? '🛑 ' : '🔃 '}
+                      {column.isGrouped ? '🛑 ' : '🔄 '}
                     </span>
                   ) : null}
                   {column.render('Header')}

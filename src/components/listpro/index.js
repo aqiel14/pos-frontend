@@ -8,6 +8,7 @@ import Table from '../Table';
 import * as moment from 'moment';
 import './listpro.css';
 import loading from '../../assets/image/loading.gif';
+import _ from 'lodash';
 export default (props) => {
   const listproReducer = useSelector(({ listproReducer }) => listproReducer);
   const dispatch = useDispatch();
@@ -48,18 +49,29 @@ export default (props) => {
         id:'id', // accessor is the "key" in the data
       },
       {
-        Header: 'Product Name',
-        accessor: 'product',
-        Cell: ({ cell: { value } }) => {
-          return value.map((data) => {
-            return (
-              <span key={data} className='badge'>
-                {data.name}
-              </span>
-            );
+        Header: 'Products Name',
+        // id:'hidden_productname',
+        accessor: (data) => {
+          let output = [];
+          _.map(data.product, (data) => {
+            output.push(data.name);
           });
-        },
-      },
+          return output.join(', ');
+      }
+    },
+      // {
+      //   Header: 'Product Name',
+      //   accessor: 'product',
+      //   Cell: ({ cell: { value } }) => {
+      //     return value.map((data) => {
+      //       return (
+      //         <span key={data} className='badge'>
+      //           {data.name}
+      //         </span>
+      //       );
+      //     });
+      //   },
+      // },
       {
         Header: 'Production Date',
         id: 'alias',

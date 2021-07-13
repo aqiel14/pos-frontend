@@ -107,7 +107,6 @@ export default (props) => {
             />
             <div class='input-group-append'>
               <div class='input-group-text'>
-                <span class='fas fa-building'></span>
               </div>
             </div>
             {errors.materialname && touched.materialname ? (
@@ -131,7 +130,6 @@ export default (props) => {
             ></textarea>
             <div class='input-group-append'>
               <div class='input-group-text'>
-                <span class='fas fa-building'></span>
               </div>
             </div>
             {errors.amount && touched.amount ? (
@@ -156,7 +154,7 @@ export default (props) => {
             />
             <div class='input-group-append col-3'>
               <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
+                
               </div>
             </div>
             {errors.materialneeded && touched.materialneeded ? (
@@ -178,7 +176,7 @@ export default (props) => {
               </select>
             <div class='input-group-append col-3'>
               <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
+                
               </div>
             </div>
             {errors.materialunit && touched.materialunit ? (
@@ -203,7 +201,7 @@ export default (props) => {
             />
             <div class='input-group-append col-3'>
               <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
+               
               </div>
             </div>
             {errors.stock && touched.stock ? (
@@ -266,7 +264,7 @@ export default (props) => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1 className='m-0 text-dark'>Create Production Material Data</h1>
+              <h1 className='m-0 text-dark'>Update Production Material Data</h1>
             </div>
           </div>
           {/* /.row */}

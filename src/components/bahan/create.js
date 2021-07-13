@@ -55,11 +55,6 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append'>
-              <div class='input-group-text'>
-                <span class='fas fa-building'></span>
-              </div>
-            </div>
             {errors.alias && touched.alias ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.materialname}
@@ -81,7 +76,7 @@ export default (props) => {
             ></textarea>
             <div class='input-group-append'>
               <div class='input-group-text'>
-                <span class='fas fa-building'></span>
+                
               </div>
             </div>
             {errors.amount && touched.amount ? (
@@ -104,11 +99,7 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append col-3'>
-              <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
-              </div>
-            </div>
+            
             {errors.materialneeded && touched.materialneeded ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.materialneeded}
@@ -128,7 +119,7 @@ export default (props) => {
               </select>
             <div class='input-group-append col-3'>
               <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
+                
               </div>
             </div>
             {errors.materialunit && touched.materialunit ? (
@@ -153,7 +144,7 @@ export default (props) => {
             />
             <div class='input-group-append col-3'>
               <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
+                
               </div>
             </div>
             {errors.stock && touched.stock ? (

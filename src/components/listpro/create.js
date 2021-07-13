@@ -55,11 +55,6 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append'>
-              <div class='input-group-text'>
-                <span class='fas fa-building'></span>
-              </div>
-            </div>
             {errors.tanggal && touched.tanggal ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.tanggal}
@@ -79,11 +74,6 @@ export default (props) => {
                   : 'form-control'
               }
             ></textarea>
-            <div class='input-group-append'>
-              <div class='input-group-text'>
-                <span class='fas fa-building'></span>
-              </div>
-            </div>
             {errors.quantity && touched.quantity ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.quantity}
@@ -101,11 +91,6 @@ export default (props) => {
   <option value="kg">KG</option>
   <option value="pcs">PCS</option>
 </select>
-            <div class='input-group-append col-3'>
-              <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
-              </div>
-            </div>
             {errors.order && touched.order ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.order}
@@ -126,11 +111,6 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append col-3'>
-              <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
-              </div>
-            </div>
             {errors.duedate && touched.duedate ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.duedate}
@@ -152,9 +132,6 @@ export default (props) => {
               }
             />
             <div class='input-group-append col-3'>
-              <div class='input-group-text'>
-                <span class='fas fa-phone'></span>
-              </div>
             </div>
             {errors.description && touched.description ? (
               <small id='passwordHelp' class='text-danger'>
