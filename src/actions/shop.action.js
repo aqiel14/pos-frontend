@@ -29,7 +29,10 @@ export const addOrder = (item) => {
       item.qty = 1;
       orderLines.unshift(item);
     } else {
-      orderLines[index].qty++;
+      if (item.stock - item.qty > 0) {
+        orderLines[index].qty++;
+      } else {
+      }
     }
     doUpdateOrder(dispatch, orderLines);
   };
@@ -54,7 +57,8 @@ export const submitPayment = (data) => {
       swal({
         title: 'Your are made sale success',
         icon: 'success',
-        buttons: true,
+      }).then(function () {
+        window.location.reload();
       });
       getState().shopReducer.mOrderLines = [];
       dispatch({

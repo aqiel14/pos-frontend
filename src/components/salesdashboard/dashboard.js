@@ -36,7 +36,7 @@ export default (props) => {
       setOrderstat({ dates });
 
       // console.log(initialdata);
-      // console.log(dates);
+      console.log(dates);
       console.log(weekly());
       dates.map((element) => {
         weeklydata(element);
@@ -57,15 +57,12 @@ export default (props) => {
       dates.push(weekDayName);
     }
 
-    return moment()
-      .subtract(7, 'days')
-      .startOf('day')
-      .format('YYYY-MM-DD HH:mm:ss');
+    return dates.reverse();
   }
 
   function tellweeknumber(weeknumber) {
     const dates = [];
-    const NUM_OF_DAYS = 7; // get last 12 dates.
+    const NUM_OF_DAYS = 7; // get last 7 dates.
 
     for (let i = 0; i < NUM_OF_DAYS; i++) {
       let date = moment();
@@ -82,19 +79,19 @@ export default (props) => {
     // console.log(day);
     switch (day) {
       case tellweeknumber(0):
-        return (initialdata[0] += 1);
+        return (initialdata[6] += 1);
       case tellweeknumber(1):
-        return (initialdata[1] += 1);
+        return (initialdata[5] += 1);
       case tellweeknumber(2):
-        return (initialdata[2] += 1);
+        return (initialdata[4] += 1);
       case tellweeknumber(3):
         return (initialdata[3] += 1);
       case tellweeknumber(4):
-        return (initialdata[4] += 1);
+        return (initialdata[2] += 1);
       case tellweeknumber(5):
-        return (initialdata[5] += 1);
+        return (initialdata[1] += 1);
       case tellweeknumber(6):
-        return (initialdata[6] += 1);
+        return (initialdata[0] += 1);
       default:
         return console.log('ERROR:' + day);
     }
@@ -168,7 +165,7 @@ export default (props) => {
                 <div className='card-header'>
                   <h3 className='card-title'>
                     <i className='fas fa-chart-line mr-1' />
-                    Sales Report
+                    Weekly Sales Report : {moment().format('MMMM')}
                   </h3>
                   <div className='card-tools'>
                     <ul className='nav nav-pills ml-auto'>

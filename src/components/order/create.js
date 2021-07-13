@@ -45,6 +45,19 @@ export default (props) => {
     let index = shopReducer.mOrderLines.indexOf(product);
     return index !== -1;
   };
+
+  function showCartButton(item) {
+    if (item.qty != 0) {
+      <Link
+        type='button'
+        class='btn btn-primary'
+        onClick={() => dispatch(shopActions.addOrder(item))}
+      >
+        <i class='fa fa-cart-plus'></i> Add to Cart
+      </Link>;
+    }
+  }
+
   const CartSection = (index) => {
     return (
       <>
@@ -67,7 +80,7 @@ export default (props) => {
                     thousandSeparator={true}
                     decimalScale={2}
                     fixedDecimalScale={true}
-                    prefix={'฿'}
+                    prefix={'IDR '}
                   />
                 </td>
                 <td>
@@ -76,7 +89,7 @@ export default (props) => {
                     displayType={'text'}
                     decimalScale={2}
                     thousandSeparator={true}
-                    prefix={'฿'}
+                    prefix={'IDR '}
                   />
                 </td>
               </tr>
@@ -123,7 +136,7 @@ export default (props) => {
       //console.log(productReducer.result);
       const { result } = productReducer;
       return (
-        <div className='row'>
+        <div className='row col-16'>
           {result &&
             result.map((item, index) => {
               return (
@@ -143,11 +156,16 @@ export default (props) => {
                       <div className='card-body'>
                         <h4 className='card-title'>{item.name}</h4>
                         <p className='card-text'>Price {item.price}</p>
+                        {/* <input
+                          type='text'
+                          name='price'
+                          // value=
+                          className='form-control'
+                          placeholder={item.qty}
+                        /> */}
                         <p className='card-text'>
                           <small className='text-muted'>
-                            remain{' '}
-                            {item.qty ? item.stock - item.qty : item.stock}{' '}
-                            items
+                            remain {item.qty ? item.stock : item.stock} items
                           </small>
                           {isSelectedItem(item) && (
                             <div
@@ -162,13 +180,19 @@ export default (props) => {
                             </div>
                           )}
                         </p>
-                        <Link
-                          type='button'
-                          class='btn btn-primary'
-                          onClick={() => dispatch(shopActions.addOrder(item))}
-                        >
-                          <i class='fa fa-cart-plus'></i> Add to Cart
-                        </Link>
+                        {item.stock > 0 ? (
+                          <Link
+                            type='button'
+                            class='btn btn-primary'
+                            onClick={() => dispatch(shopActions.addOrder(item))}
+                          >
+                            <i class='fa fa-cart-plus'></i> Add to Cart
+                          </Link>
+                        ) : (
+                          <a type='button' class='btn btn-secondary'>
+                            Out Of Stock
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -193,7 +217,7 @@ export default (props) => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1 className='m-0 text-dark'>Sales Page</h1>
+              <h1 className='m-0 text-dark'>Cashier Page</h1>
             </div>
           </div>
           {/* /.row */}
