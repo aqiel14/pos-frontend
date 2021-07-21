@@ -8,6 +8,7 @@ import productReducer from './product.reducer';
 import shopReducer from './shop.reducer';
 import statReducer from './stat.reducer';
 import orderReducer from './order.reducer';
+import userReducer from './user.reducer';
 export default combineReducers({
   loginReducer,
   registerReducer,
@@ -18,4 +19,5 @@ export default combineReducers({
   shopReducer,
   statReducer,
   orderReducer,
+  userReducer,
 });

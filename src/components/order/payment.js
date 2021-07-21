@@ -68,6 +68,7 @@ export default (props) => {
     trans.user_id = user_id;
     trans.order_list = props.order;
     console.log(props.order);
+    console.log();
     dispatch(shopActions.submitPayment(trans));
   };
 

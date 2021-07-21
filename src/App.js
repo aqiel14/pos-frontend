@@ -20,6 +20,7 @@ import ProductUpdate from './components/product/update';
 import ProductIndex from './components/product/index';
 import CreateOrder from './components/order/create';
 import OrderIndex from './components/order/index';
+import OrderReceipt from './components/order/receipt.js';
 import {
   BrowserRouter as Router,
   Route,
@@ -52,6 +53,7 @@ const App = (props) => {
   return (
     <Router>
       <Switch>
+        <Route exact path='/order/receipt/:id' component={OrderReceipt} />
         <div>
           {loginActions.isLoggedIn() && <Sidebar />}
           {loginActions.isLoggedIn() && <Header />}
@@ -83,6 +85,7 @@ const App = (props) => {
           <SecuredRoute path='/product/update/:id' component={ProductUpdate} />
 
           <SecuredRoute exact path='/order/create' component={CreateOrder} />
+
           <SecuredRoute exact path='/order/' component={OrderIndex} />
 
           <Route path='/' exact component={Login} />

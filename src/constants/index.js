@@ -50,6 +50,11 @@ export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILED = 'ORDER_FAILED';
 export const ORDER_CLEAR = 'ORDER_CLEAR';
 
+export const USER_FETCHING = 'USER_FETCHING';
+export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAILED = 'USER_FAILED';
+export const USER_CLEAR = 'USER_CLEAR';
+
 //Forgot password
 // export const FORGOT_FETCHING = "FORGOT_FETCHING";
 // export const FORGOT_SUCCESS = "FORGOT_SUCCESS";

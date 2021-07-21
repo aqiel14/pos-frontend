@@ -137,6 +137,15 @@ export default (props) => {
           return (
             <>
               <Link
+                to={'/order/receipt/' + value}
+                type='button'
+                class='btn btn-primary'
+                style={{ 'margin-right': '5px' }}
+                onClick={() => dispatch(orderActions.clearState())}
+              >
+                Receipt
+              </Link>
+              <Link
                 type='button'
                 class='btn btn-danger'
                 onClick={() => confirmDelete(value)}

@@ -60,3 +60,44 @@ export const remove = (id) => {
     }
   };
 };
+
+export const getSingleOrder = (id) => {
+  return async (dispatch) => {
+    dispatch(setOrderStateToFetching());
+    const response = await httpClient.get(
+      process.env.REACT_APP_API_URL + 'order/' + id
+    );
+    if (response.data.result === 'success') {
+      dispatch(setOrderStateToSuccess(response.data.data));
+    } else if (response.data.result === 'error') {
+      dispatch(setOrderStateToFailed());
+      swal('Error!', response.data.message, 'error');
+    }
+  };
+};
+
+export const Update = (values, history) => {
+  return async (dispatch) => {
+    dispatch(setOrderStateToFetching());
+    const response = await httpClient.put(
+      process.env.REACT_APP_API_URL + 'order',
+      values
+    );
+    if (response.data.result == 'success') {
+      dispatch(setOrderStateToClear());
+      history.goBack();
+      dispatch(Index());
+    } else if (response.data.result === 'error') {
+      dispatch(setOrderStateToFailed());
+      swal('Error!', response.data.message, 'error');
+    }
+  };
+};
+
+export const Back = (history) => {
+  return (dispatch, getState) => {
+    dispatch(setOrderStateToClear());
+    history.goBack();
+    dispatch(Index());
+  };
+};

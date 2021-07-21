@@ -24,14 +24,10 @@ const ProfileSchema = Yup.object().shape({
     .min(2, 'username is Too Short!')
     .max(50, 'username is Too Long!')
     .required('username is Required'),
-  first_name: Yup.string()
+  company_name: Yup.string()
     .min(2, 'firstname is Too Short!')
     .max(30, 'firstname is Too Long!')
     .required('firstname is Required'),
-  last_name: Yup.string()
-    .min(2, 'lastname is Too Short!')
-    .max(30, 'lastname is Too Long!')
-    .required('lastname is Required'),
   phone: Yup.number('Phone number is use only number')
     .min(10, 'Phone number must be 10 characters!')
     .required('Phone number is Required'),
@@ -82,7 +78,7 @@ class Profile extends Component {
           src={
             values.file_obj != null
               ? values.file_obj
-              : process.env.REACT_APP_BACKEND_URL + '/images/user.png'
+              : process.env.REACT_APP_BACKEND_URL + 'images/user.png'
           }
           class='profile-user-img img-fluid img-circle'
           width={100}
@@ -136,9 +132,9 @@ class Profile extends Component {
       <form role='form' onSubmit={handleSubmit}>
         {this.showPreviewImage(values)}
         <div className='card-body'>
-          <span style={{ color: '#00B0CD', marginLeft: 10 }}>Add Picture</span>
+          <span style={{ color: '#00B0CD', marginLeft: 10 }}>Add Logo</span>
           <div className='form-group'>
-            <label htmlFor='exampleInputFile'>Avatar upload</label>
+            <label htmlFor='exampleInputFile'>Add Company Logo</label>
             <div className='input-group'>
               <div className='custom-file'>
                 <input
@@ -204,42 +200,22 @@ class Profile extends Component {
               id='username'
               placeholder='Enter UserName'
             />
-            <label htmlFor='username'>First Name</label>
+            <label htmlFor='username'>Company Name</label>
             <input
               onChange={handleChange}
-              value={values.first_name}
+              value={values.company_name}
               type='text'
               className={
-                errors.first_name && touched.first_name
+                errors.company_name && touched.company_name
                   ? 'form-control is-invalid'
                   : 'form-control'
               }
-              id='first_name'
-              placeholder='Enter First Name'
+              id='company_name'
+              placeholder='Enter Company Name'
             />
-            {errors.first_name && touched.first_name ? (
+            {errors.company_name && touched.company_name ? (
               <small id='passwordHelp' class='text-danger'>
-                {errors.first_name}
-              </small>
-            ) : null}
-          </div>
-          <div className='form-group has-feedback'>
-            <label htmlFor='last_name'>Last Name</label>
-            <input
-              onChange={handleChange}
-              value={values.last_name}
-              type='text'
-              className={
-                errors.last_name && touched.last_name
-                  ? 'form-control is-invalid'
-                  : 'form-control'
-              }
-              id='last_name'
-              placeholder='Enter Last Name'
-            />
-            {errors.last_name && touched.last_name ? (
-              <small id='passwordHelp' class='text-danger'>
-                {errors.last_name}
+                {errors.company_name}
               </small>
             ) : null}
           </div>
@@ -299,7 +275,7 @@ class Profile extends Component {
 
   render() {
     let result = this.state.response;
-    console.log(result);
+    console.log(result.data);
     return (
       <div className='content-wrapper'>
         <section className='content-header'>
@@ -328,14 +304,13 @@ class Profile extends Component {
                   <Formik
                     enableReinitialize={true}
                     initialValues={
-                      result
-                        ? result
+                      result.data
+                        ? result.data
                         : {
                             id: '',
                             username: '',
                             email: '',
-                            first_name: '',
-                            last_name: '',
+                            company_name: '',
                             phone: '',
                             address: '',
                           }
@@ -344,8 +319,7 @@ class Profile extends Component {
                       let formData = new FormData();
                       formData.append('id', values._id);
                       formData.append('username', values.username);
-                      formData.append('first_name', values.first_name);
-                      formData.append('last_name', values.last_name);
+                      formData.append('company_name', values.company_name);
                       formData.append('phone', values.phone);
                       formData.append('address', values.address);
                       formData.append('email', values.email);

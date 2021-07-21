@@ -12,7 +12,7 @@ const Create_Schema = Yup.object().shape({
     .required('name is Required'),
   address: Yup.string().required(),
   email: Yup.string().email('Invalid email').required('Email is Required'),
-  tel: Yup.string().required('Telephone number is required'),
+  tel: Yup.string(),
   vat: Yup.string().required('VAT number is required'),
 });
 

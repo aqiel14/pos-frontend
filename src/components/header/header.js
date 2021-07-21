@@ -5,7 +5,7 @@ import { server } from '../../constants';
 
 export default (props) => {
   const [role, setRole] = useState('');
-  const [username, setUsername] = useState('');
+  const [company_name, setCompanyName] = useState('');
   const history = useHistory();
   useEffect(() => {
     getcurrentRole();
@@ -22,8 +22,9 @@ export default (props) => {
         })
         .join('')
     );
-    let { level, username } = JSON.parse(jsonPayload);
-    setUsername(username);
+    let { level, company_name } = JSON.parse(jsonPayload);
+    console.log(jsonPayload);
+    setCompanyName(company_name);
     setRole(level);
   };
 
@@ -94,7 +95,7 @@ export default (props) => {
 
         <li className='nav-item dropdown'>
           <a className='nav-link' data-toggle='dropdown' href='#'>
-            <i className='far fa-user' /> Hello,{role} {username}
+            <i className='far fa-user' /> Hello,{role} {company_name}
           </a>
 
           <div className='dropdown-menu dropdown-menu-lg dropdown-menu-right'>
