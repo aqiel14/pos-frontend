@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as supplierActions from '../../actions/supplier.action';
 import { server } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
+import Table from '../Table';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 

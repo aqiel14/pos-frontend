@@ -5,6 +5,7 @@ import posmachineReducer from './posmachine.reducer';
 import branchReducer from './branch.reducer';
 import supplierReducer from './supplier.reducer';
 import productReducer from './product.reducer';
+import materialReducer from './material.reducer';
 import shopReducer from './shop.reducer';
 import statReducer from './stat.reducer';
 import orderReducer from './order.reducer';
@@ -19,6 +20,7 @@ export default combineReducers({
   branchReducer,
   supplierReducer,
   productReducer,
+  materialReducer,
   shopReducer,
   statReducer,
   orderReducer,

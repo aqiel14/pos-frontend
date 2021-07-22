@@ -16,6 +16,9 @@ import BranchIndex from './components/branch/index';
 import SupplierCreate from './components/supplier/create';
 import SupplierUpdate from './components/supplier/update';
 import SupplierIndex from './components/supplier/index';
+import MaterialCreate from './components/material/create';
+import MaterialUpdate from './components/material/update';
+import MaterialIndex from './components/material/index';
 import ProductCreate from './components/product/create';
 import ProductUpdate from './components/product/update';
 import ProductIndex from './components/product/index';
@@ -95,6 +98,10 @@ const App = (props) => {
           <SecuredRoute exact path='/product/' component={ProductIndex} />
           <SecuredRoute path='/product/create' component={ProductCreate} />
           <SecuredRoute path='/product/update/:id' component={ProductUpdate} />
+
+          <SecuredRoute exact path='/material/' component={MaterialIndex} />
+          <SecuredRoute path='/material/create' component={MaterialCreate} />
+          <SecuredRoute path='/material/update/:id' component={MaterialUpdate} />
 
           <SecuredRoute exact path='/order/create' component={CreateOrder} />
 

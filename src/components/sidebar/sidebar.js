@@ -131,9 +131,9 @@ export default () => {
                     </Link>
                   </li>
                   <li class='nav-item'>
-                    <Link to='/supplier' className='nav-link'>
-                      <i className='nav-icon fas fa-id-card' />
-                      <p>Supplier</p>
+                    <Link to='/material' className='nav-link'>
+                      <i className='nav-icon fas fa-dolly' />
+                      <p>Material</p>
                     </Link>
                   </li>
                 </ul>
