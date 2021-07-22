@@ -101,6 +101,12 @@ export default () => {
                       <p> Order</p>
                     </Link>
                   </li>
+                  <li class='nav-item'>
+                    <Link to='/order/create' className='nav-link'>
+                      <i className='nav-icon fas fa-cash-register' />
+                      <p> Cashier</p>
+                    </Link>
+                  </li>
                 </ul>
               </li>
 

@@ -19,6 +19,7 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "moment-recur": "^1.0.7",
     "nice-invoice": "^1.0.7",
     "papaparse": "^5.3.1",
     "react": "^17.0.2",

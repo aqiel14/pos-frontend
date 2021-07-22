@@ -13,26 +13,26 @@ export const setSTATStateToSuccess = (payload) => ({
   payload,
 });
 
-// export const getCurrentInventoryStat = () => {
-//   return async (dispatch) => {
-//     dispatch(setSTATStateToFetching());
-//     const response = await httpClient.get(
-//       server.STAT_ENDPOINT + '/current_inventory'
-//     );
-//     let result = response.data.data.flat().map((item) => {
-//       return {
-//         name: item.name,
-//         stock: item.stock,
-//       };
-//     });
-//     if (response.data.result == 'success') {
-//       dispatch(setSTATStateToSuccess(result));
-//     } else if (response.data.result === 'error') {
-//       dispatch(setSTATStateToFailed());
-//       return response.data.message;
-//     }
-//   };
-// };
+export const getCurrentInventoryStat = () => {
+  return async (dispatch) => {
+    dispatch(setSTATStateToFetching());
+    const response = await httpClient.get(
+      server.STAT_ENDPOINT + '/current_inventory'
+    );
+    let result = response.data.data.flat().map((item) => {
+      return {
+        name: item.name,
+        stock: item.stock,
+      };
+    });
+    if (response.data.result == 'success') {
+      dispatch(setSTATStateToSuccess(result));
+    } else if (response.data.result === 'error') {
+      dispatch(setSTATStateToFailed());
+      return response.data.message;
+    }
+  };
+};
 
 export const getCurrentOrderStat = () => {
   return async (dispatch) => {

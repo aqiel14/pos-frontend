@@ -4,8 +4,10 @@ import { server } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
+import Table from '../Table';
 export default (props) => {
   const productReducer = useSelector(({ productReducer }) => productReducer);
+  const data = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
@@ -30,6 +32,77 @@ export default (props) => {
       }
     });
   }
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Gambar Produk',
+        accessor: 'image',
+        Cell: ({ cell: { value } }) => (
+          <img
+            class='img-fluid img-rounded'
+            width={200}
+            src={process.env.REACT_APP_PRODUCT_IMAGE_PATH + '/' + value}
+          />
+        ),
+      },
+      {
+        Header: 'Nama produk',
+        accessor: 'name',
+        id: 'alias', // accessor is the "key" in the data
+      },
+      {
+        Header: 'Stock',
+        accessor: 'stock',
+      },
+      {
+        Header: 'Price',
+        accessor: 'price',
+      },
+
+      {
+        Header: 'Created Date',
+        accessor: 'created',
+      },
+      {
+        Header: 'Action',
+        accessor: '_id',
+        Cell: ({ cell: { value } }) => {
+          // alert(id)
+          return (
+            <>
+              <Link
+                to={'/product/update/' + value}
+                type='button'
+                class='btn btn-primary'
+                style={{ 'margin-right': '5px' }}
+                onClick={() => dispatch(productActions.clearState())}
+              >
+                Edit
+              </Link>
+              <Link
+                type='button'
+                class='btn btn-danger'
+                onClick={() => confirmDelete(value)}
+              >
+                Delete
+              </Link>
+            </>
+          );
+        },
+      },
+    ],
+    []
+  );
+
+  const Holdon = (columns) => {
+    if (productReducer.result) {
+      return <Table columns={columns} data={productReducer.result} />;
+    } else {
+      return <h1>LOADING....</h1>;
+    }
+  };
+
   return (
     <div className='content-wrapper'>
       {/* Content Header (Page header) */}
@@ -61,66 +134,7 @@ export default (props) => {
                     </div>
                   </div>
                 </div>
-                {/* /.card-header */}
-                <div className='card-body table-responsive p-0'>
-                  <table className='table table-hover text-nowrap'>
-                    <thead>
-                      <tr>
-                        <th>Product Image</th>
-                        <th>Name</th>
-                        <th>Stock</th>
-                        <th>Price</th>
-                        <th>Created Date</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {productReducer.result ? (
-                        productReducer.result.map((data, index) => {
-                          return (
-                            <tr key={index}>
-                              <td>
-                                <img
-                                  class='img-fluid img-rounded'
-                                  width={200}
-                                  src={
-                                    process.env.REACT_APP_PRODUCT_IMAGE_PATH +
-                                    '/' +
-                                    data.image
-                                  }
-                                />
-                              </td>
-                              <td>{data.name}</td>
-                              <td>{data.stock}</td>
-                              <td>{data.price}</td>
-                              <td>{data.created}</td>
-                              <td>
-                                <Link
-                                  to={'/product/update/' + data._id}
-                                  onClick={() =>
-                                    dispatch(productActions.clearState())
-                                  }
-                                >
-                                  Edit
-                                </Link>
-                                {' | '}
-                                <Link onClick={() => confirmDelete(data._id)}>
-                                  Delete
-                                </Link>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      ) : (
-                        <tr>
-                          {' '}
-                          <td> No data </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-                {/* /.card-body */}
+                <div className='card card-body'>{Holdon(columns, data)}</div>
               </div>
               {/* /.card */}
             </div>

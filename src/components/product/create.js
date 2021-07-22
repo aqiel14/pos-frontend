@@ -50,7 +50,12 @@ export default (props) => {
         <div class='card-body'>
           <div class='form-group '>{showPreviewImage(values)}</div>
           <div class='form-group '>
-            <input name='id' onChange={handleChange} value={values.id} />
+            <input
+              name='id'
+              onChange={handleChange}
+              value={values.id}
+              type='hidden'
+            />
             <div class='input-group col-5'>
               <div class='custom-file'>
                 <label class='custom-file-label' for='exampleInputFile'>
@@ -86,7 +91,8 @@ export default (props) => {
               onChange={handleChange}
               value={values.name}
               className='form-control'
-              placeholder='Name'
+              placeholder='Nama'
+              required='true'
               className={
                 errors.name && touched.name
                   ? 'form-control is-invalid'
@@ -96,12 +102,33 @@ export default (props) => {
           </div>
           <div className='form-group input-group has-feedback'>
             <input
-              type='text'
+              type='number'
+              name='hpp'
+              onChange={handleChange}
+              value={values.hpp}
+              className='form-control'
+              placeholder='Harga Pokok Penjualan'
+              className={
+                errors.hpp && touched.hpp
+                  ? 'form-control is-invalid'
+                  : 'form-control'
+              }
+            />
+            {errors.hpp && touched.hpp ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.hpp}
+              </small>
+            ) : null}
+          </div>
+          <div className='form-group input-group has-feedback'>
+            <input
+              type='number'
               name='price'
               onChange={handleChange}
               value={values.price}
               className='form-control'
-              placeholder='Price'
+              placeholder='Harga jual'
+              required='true'
               className={
                 errors.price && touched.price
                   ? 'form-control is-invalid'
@@ -121,7 +148,8 @@ export default (props) => {
               onChange={handleChange}
               value={values.stock}
               className='form-control'
-              placeholder='stock'
+              placeholder='Stok'
+              required='true'
               className={
                 errors.stock && touched.stock
                   ? 'form-control is-invalid'
@@ -180,6 +208,9 @@ export default (props) => {
               formData.append('name', values.name);
               formData.append('stock', values.stock);
               formData.append('price', values.price);
+              if (values.hpp) {
+                formData.append('hpp', values.hpp);
+              }
               if (values.image) {
                 formData.append('image', values.image);
               }

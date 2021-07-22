@@ -1,15 +1,68 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Payment from './payment';
 import * as productActions from '../../actions/product.action';
 import * as shopActions from '../../actions/shop.action';
 import NumberFormat from 'react-number-format';
 import { Link } from 'react-router-dom';
+import Table from '../Table';
 import cashier from './cashier.png';
+import './create.css';
 export default (props) => {
   const shopReducer = useSelector(({ shopReducer }) => shopReducer);
   const productReducer = useSelector(({ productReducer }) => productReducer);
+  const [data, setData] = useState([]);
+
   const dispatch = useDispatch();
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'product',
+        accessor: 'name',
+        id: 'alias', // accessor is the "key" in the data
+      },
+      {
+        Header: 'Price',
+        accessor: 'price',
+      },
+      {
+        Header: 'Stock',
+        accessor: 'stock',
+      },
+      {
+        Header: 'Action',
+        accessor: (data) => {
+          if (data.status !== 'DONE') {
+            return (
+              <Link
+                type='button'
+                class='btn btn-primary'
+                onClick={() => dispatch(shopActions.addOrder(data))}
+              >
+                <i class='fa fa-cart-plus'></i> Add to Cart
+              </Link>
+            );
+          } else {
+            return (
+              <a type='button' class='btn btn-secondary'>
+                Out Of Stock
+              </a>
+            );
+          }
+        },
+      },
+    ],
+    []
+  );
+  const Holdon = (columns) => {
+    if (productReducer.result) {
+      console.log(productReducer.result);
+      return <Table columns={columns} data={productReducer.result} />;
+    } else {
+      return <p>LOADING</p>;
+    }
+  };
 
   const renderPayment = () => {
     return (
@@ -18,6 +71,7 @@ export default (props) => {
       </div>
     );
   };
+
   const renderOrder = () => {
     const { mOrderLines } = shopReducer;
 
@@ -26,7 +80,31 @@ export default (props) => {
       return (
         <tr>
           <td>{item.name}</td>
-          <td>{item.qty}</td>
+          <td>
+            <button
+              type='button'
+              class='btn btn-danger btn-number'
+              onClick={() => dispatch(shopActions.minusOrder(item))}
+            >
+              -
+            </button>
+            <input
+              type='number'
+              class='form-control input-number'
+              value={item.qty}
+              name='qty'
+              onChange={(e) =>
+                dispatch(shopActions.qtyOrder(item, e.target.value))
+              }
+            />
+            <button
+              type='button'
+              class='btn btn-success btn-number'
+              onClick={() => dispatch(shopActions.plusOrder(item))}
+            >
+              +
+            </button>
+          </td>
           <td>{item.price}</td>
           <td>
             <Link
@@ -131,7 +209,76 @@ export default (props) => {
       </>
     );
   };
+
   const renderProductRows = () => {
+    if (productReducer.result) {
+      //console.log(productReducer.result);
+      const { result } = productReducer;
+      return (
+        <div className='card-body table-responsive p-0'>
+          <table className='table table-hover text-nowrap'>
+            <thead>
+              <tr>
+                <th>Product Image</th>
+                <th>Name</th>
+                <th>Stock</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {productReducer.result ? (
+                productReducer.result.map((data, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>
+                        <img
+                          class='img-fluid img-rounded'
+                          width={200}
+                          src={
+                            process.env.REACT_APP_PRODUCT_IMAGE_PATH +
+                            '/' +
+                            data.image
+                          }
+                        />
+                      </td>
+                      <td>{data.name}</td>
+                      <td>{data.stock}</td>
+                      <td>{data.price}</td>
+                      <td>
+                        {data.stock > 0 ? (
+                          <Link
+                            type='button'
+                            class='btn btn-primary'
+                            onClick={() => dispatch(shopActions.addOrder(data))}
+                          >
+                            <i class='fa fa-cart-plus'></i> Add to Cart
+                          </Link>
+                        ) : (
+                          <a type='button' class='btn btn-secondary'>
+                            Out Of Stock
+                          </a>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })
+              ) : (
+                <tr>
+                  {' '}
+                  <td> No data </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      );
+    } else {
+      return 'loading...';
+    }
+  };
+
+  const renderProductRowsLAMA = () => {
     if (productReducer.result) {
       //console.log(productReducer.result);
       const { result } = productReducer;
@@ -236,7 +383,7 @@ export default (props) => {
             >
               {shopReducer.mIsPaymentMade
                 ? renderPayment()
-                : renderProductRows()}
+                : Holdon(columns, data)}
             </div>
             <div className='col-3'>{CartSection()}</div>
           </div>

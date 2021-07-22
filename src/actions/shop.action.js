@@ -21,6 +21,50 @@ const doUpdateOrder = (dispatch, orderLines) => {
     })
   );
 };
+
+export const minusOrder = (item) => {
+  return (dispatch, getState) => {
+    let orderLines = getState().shopReducer.mOrderLines;
+    let index = orderLines.indexOf(item);
+
+    if (orderLines[index].qty > 1) {
+      orderLines[index].qty--;
+    } else {
+      console.log('ASd');
+    }
+    doUpdateOrder(dispatch, orderLines);
+  };
+};
+
+export const plusOrder = (item) => {
+  return (dispatch, getState) => {
+    let orderLines = getState().shopReducer.mOrderLines;
+    let index = orderLines.indexOf(item);
+
+    if (item.stock - item.qty > 0) {
+      orderLines[index].qty++;
+    } else {
+    }
+    doUpdateOrder(dispatch, orderLines);
+  };
+};
+
+export const qtyOrder = (item, event) => {
+  return (dispatch, getState) => {
+    let orderLines = getState().shopReducer.mOrderLines;
+    let index = orderLines.indexOf(item);
+    if (event !== '') {
+      if (item.stock - event >= 0) {
+        orderLines[index].qty = event;
+      } else {
+      }
+      removeOrder(item);
+    }
+
+    doUpdateOrder(dispatch, orderLines);
+  };
+};
+
 export const addOrder = (item) => {
   return (dispatch, getState) => {
     let orderLines = getState().shopReducer.mOrderLines;

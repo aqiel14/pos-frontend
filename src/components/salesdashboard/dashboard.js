@@ -5,8 +5,9 @@ import { HorizontalBar, Bar, Doughnut, Line } from 'react-chartjs-2';
 import * as StatActions from '../../actions/stat.action';
 import 'chartjs-plugin-datalabels';
 import moment from 'moment';
-import _ from 'lodash';
 
+import _ from 'lodash';
+require('moment-recur');
 export default (props) => {
   const [inventorystat, setInventorystat] = useState([]);
   const [orderstat, setOrderstat] = useState([]);
@@ -14,6 +15,7 @@ export default (props) => {
   const statReducer = useSelector(({ statReducer }) => statReducer);
   const dispatch = useDispatch();
   let initialdata = [0, 0, 0, 0, 0, 0, 0];
+  let asd = moment('07/01/2021').monthWeek();
 
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
@@ -37,6 +39,7 @@ export default (props) => {
 
       // console.log(initialdata);
       console.log(dates);
+      console.log(asd);
       console.log(weekly());
       dates.map((element) => {
         weeklydata(element);
