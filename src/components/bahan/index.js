@@ -85,6 +85,7 @@ export default (props) => {
         },
       },
      
+     
       // {
       //   Header: 'Material Stock',
       //   accessor: 'stock',

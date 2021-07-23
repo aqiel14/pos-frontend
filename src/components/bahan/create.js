@@ -152,6 +152,7 @@ export default (props) => {
               </small>
             ) : null}
           </div>
+       
           {/* <div className='form-group input-group has-feedback'>
             <input
               type='text'
@@ -220,6 +221,7 @@ export default (props) => {
               prounit: '',
               stock: '',
               product: '',
+              status: '',
             }}
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
@@ -229,6 +231,7 @@ export default (props) => {
               formData.append('materialunit', values.materialunit);
               formData.append('prounit', values.prounit);
               formData.append('stock', values.stock);
+              formData.append('status', values.status);
               let result = multiselect.map((arr) => arr.value);
               console.log(result);
               formData.append('product', result);

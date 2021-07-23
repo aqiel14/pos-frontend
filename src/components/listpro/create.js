@@ -162,6 +162,29 @@ export default (props) => {
               </small>
             ) : null}
           </div>
+          <div className='form-group input-group has-feedback'>
+          <select 
+          name='status'
+          id="status"
+            onChange={handleChange}
+              value={values.status}
+              className='form-control'
+              placeholder='Status'>
+                <option value="">Material Unit</option>
+              <option value="not_done">Not Done</option>
+              <option value="done">Done</option>
+              </select>
+            <div class=''>
+              <div class=''>
+                
+              </div>
+            </div>
+            {errors.status && touched.status ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.status}
+              </small>
+            ) : null}
+          </div>
          
           <div class='row'>
             <div class='offset-md-4 col-4'>
@@ -205,6 +228,7 @@ export default (props) => {
               description: '',
               product: '',
               cost: '',
+              status: '',
             }}
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
@@ -214,6 +238,7 @@ export default (props) => {
               formData.append('duedate', values.duedate);
               formData.append('description', values.description);
               formData.append('cost', values.cost);
+              formData.append('status', values.status);
               let result = multiselect.map((arr) => arr.value);
               console.log(result);
               formData.append('product', result);
