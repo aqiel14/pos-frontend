@@ -151,7 +151,7 @@ export default (props) => {
                 onChange={handleChange}
                 value={values.unit}
                 className='form-control'
-                placeholder='Unit'
+                placeholder='Satuan Unit'
                 className={
                   errors.unit && touched.unit
                     ? 'form-control is-invalid'
