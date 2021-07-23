@@ -65,3 +65,23 @@ export const getCurrentOrderStat = () => {
     }
   };
 };
+
+export const getCurrentListproStat = () => {
+  return async (dispatch) => {
+    dispatch(setSTATStateToFetching());
+    const response = await httpClient.get(
+      server.STAT_ENDPOINT + '/current_listpro'
+    );
+    let result = response.data.data.flat(3).map((listpro) => {
+      return {
+        date: listpro.created,
+      };
+    });
+    if (response.data.result == 'success') {
+      dispatch(setSTATStateToSuccess(result));
+    } else if (response.data.result === 'error') {
+      dispatch(setSTATStateToFailed());
+      return response.data.message;
+    }
+  };
+};

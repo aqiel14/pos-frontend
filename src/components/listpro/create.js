@@ -88,6 +88,7 @@ export default (props) => {
               value={values.order}
               className='form-control'
               placeholder='Order Unit'>
+  <option value=""></option>
   <option value="kg">KG</option>
   <option value="pcs">PCS</option>
 </select>
@@ -139,6 +140,28 @@ export default (props) => {
               </small>
             ) : null}
           </div>
+          <div className='form-group input-group has-feedback'>
+            <input
+              type='text'
+              name='cost'
+              onChange={handleChange}
+              value={values.cost}
+              className='form-control'
+              placeholder='Cost'
+              className={
+                errors.cost && touched.cost
+                  ? 'form-control is-invalid'
+                  : 'form-control'
+              }
+            />
+            <div class='input-group-append col-3'>
+            </div>
+            {errors.cost && touched.cost ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.cost}
+              </small>
+            ) : null}
+          </div>
          
           <div class='row'>
             <div class='offset-md-4 col-4'>
@@ -181,6 +204,7 @@ export default (props) => {
               duedate: '',
               description: '',
               product: '',
+              cost: '',
             }}
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
@@ -189,6 +213,7 @@ export default (props) => {
               formData.append('order', values.order);
               formData.append('duedate', values.duedate);
               formData.append('description', values.description);
+              formData.append('cost', values.cost);
               let result = multiselect.map((arr) => arr.value);
               console.log(result);
               formData.append('product', result);

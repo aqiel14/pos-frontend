@@ -12,6 +12,9 @@ const Create_Schema = Yup.object().shape({
     .required('name is Required'),
   operator: Yup.string().required(),
   description: Yup.string().required('Description is required'),
+  capacity: Yup.string().required('Capacity is required'),
+  unit: Yup.string().required('Unit is required'),
+  status: Yup.string().required('Status is required'),
 });
 
 export default (props) => {
@@ -88,6 +91,51 @@ export default (props) => {
               ) : null}
             </div>
           </div>
+          <div class='row'>
+            <div className='form-group col-md-8 input-group has-feedback'>
+              <input
+                name='capacity'
+                onChange={handleChange}
+                value={values.capacity}
+                className='form-control'
+                placeholder='Capacity'
+                className={
+                  errors.capacity && touched.capacity
+                    ? 'form-control is-invalid'
+                    : 'form-control'
+                }
+              ></input>
+              <div class='input-group-append'>
+                <div class='input-group-text'>
+                  <span class='fas fa-building'></span>
+                </div>
+              </div>
+              {errors.capacity && touched.capacity ? (
+                <small id='passwordHelp' class='text-danger'>
+                  {errors.capacity}
+                </small>
+              ) : null}
+            </div>
+          </div>
+          <div className='form-group input-group has-feedback'>
+          <select 
+          name='unit'
+          id="unit"
+            onChange={handleChange}
+              value={values.unit}
+              className='form-control'
+              placeholder='Status'>
+  <option value="">Unit</option>
+  <option value="ton">TON</option>
+  <option value="pcs">PCS</option>
+  <option value="kg">KG</option>
+</select>
+            {errors.unit && touched.unit ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.unit}
+              </small>
+            ) : null}
+          </div>
           <div className='form-group input-group has-feedback'>
             <input
               type='text'
@@ -105,6 +153,26 @@ export default (props) => {
             {errors.description && touched.description ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.description}
+              </small>
+            ) : null}
+          </div>
+          <div className='form-group input-group has-feedback'>
+          <select 
+          name='status'
+          id="status"
+            onChange={handleChange}
+              value={values.status}
+              className='form-control'
+              placeholder='Status'>
+  <option value="">Status</option>
+  <option value="ready">Ready</option>
+  <option value="maintanance">Maintenance</option>
+  <option value="damaged">Damaged</option>
+  <option value="down">Down</option>
+</select>
+            {errors.status && touched.status ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.status}
               </small>
             ) : null}
           </div>
@@ -130,7 +198,7 @@ export default (props) => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1 className='m-0 text-dark'>Create Information Machine</h1>
+              <h1 className='m-0 text-dark'>Create Machine Information Data</h1>
             </div>
           </div>
           {/* /.row */}
@@ -144,7 +212,11 @@ export default (props) => {
             initialValues={{
               machinename: '',
               operator: '',
+              capacity: '',
+              unit: '',
               description: '',
+              status: '',
+
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log(values);

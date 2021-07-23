@@ -49,7 +49,7 @@ export default (props) => {
         id:'id', // accessor is the "key" in the data
       },
       {
-        Header: 'Products Name',
+        Header: 'Product Name',
         // id:'hidden_productname',
         accessor: (data) => {
           let output = [];
@@ -60,7 +60,7 @@ export default (props) => {
       }
     },
       // {
-      //   Header: 'Product Name',
+      //   Header: 'Products Name',
       //   accessor: 'product',
       //   Cell: ({ cell: { value } }) => {
       //     return value.map((data) => {
@@ -85,11 +85,10 @@ export default (props) => {
      
       {
         Header: 'Quantity',
-        accessor: 'quantity',
-      },
-      {
-        Header: 'Order Unit',
-        accessor: 'order',
+        accessor: (data)=>{
+          return data.quantity+' '+data.order
+        
+        },
       },
       {
         Header: 'Due Date',
@@ -102,6 +101,12 @@ export default (props) => {
       {
         Header: 'Description',
         accessor: 'description',
+      },
+      {
+        Header: 'Cost',
+        accessor: (data)=>{
+          return 'Rp. '+data.cost
+        },
       },
       {
         Header: 'Action',

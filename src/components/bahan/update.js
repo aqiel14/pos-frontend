@@ -105,10 +105,7 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append'>
-              <div class='input-group-text'>
-              </div>
-            </div>
+          
             {errors.materialname && touched.materialname ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.materialname}
@@ -128,10 +125,7 @@ export default (props) => {
                   : 'form-control'
               }
             ></textarea>
-            <div class='input-group-append'>
-              <div class='input-group-text'>
-              </div>
-            </div>
+            
             {errors.amount && touched.amount ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.amount}
@@ -152,40 +146,51 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append col-3'>
-              <div class='input-group-text'>
-                
-              </div>
-            </div>
+            
             {errors.materialneeded && touched.materialneeded ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.materialneeded}
               </small>
             ) : null}
           </div>
-          <div className='form-group input-group has-feedback'>
+          {/* <div className='form-group input-group has-feedback'>
           <select 
           name='materialunit'
           id="materialunit"
             onChange={handleChange}
               value={values.materialunit}
               className='form-control'
-              placeholder='Order Unit'>
+              placeholder='Material Unit'>
+                <option value="">Material Unit</option>
               <option value="kg">KG</option>
               <option value="pcs">PCS</option>
               </select>
-            <div class='input-group-append col-3'>
-              <div class='input-group-text'>
-                
-              </div>
-            </div>
+           
             {errors.materialunit && touched.materialunit ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.materialunit}
               </small>
             ) : null}
-          </div>
+          </div> */}
           <div className='form-group input-group has-feedback'>
+          <select 
+          name='prounit'
+          id="prounit"
+            onChange={handleChange}
+              value={values.prounit}
+              className='form-control'
+              placeholder='Production Unit'>
+                <option value="">Product unit</option>
+              <option value="kg">KG</option>
+              <option value="pcs">PCS</option>
+              </select>
+            {errors.prounit && touched.prounit ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.prounit}
+              </small>
+            ) : null}
+          </div>
+          {/* <div className='form-group input-group has-feedback'>
             <input
               type='text'
               name='stock'
@@ -199,21 +204,16 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append col-3'>
-              <div class='input-group-text'>
-               
-              </div>
-            </div>
             {errors.stock && touched.stock ? (
               <small id='passwordHelp' class='text-danger'>
                 {errors.stock}
               </small>
             ) : null}
-          </div>
+          </div> */}
           {renderSelectwithSelected()}
-          <div class='form-group '>{showPreviewImage(values)}</div>
+          {/* <div class='form-group '>{showPreviewImage(values)}</div> */}
 
-          <div class='form-group '>
+          {/* <div class='form-group '>
             <div class='input-group col-5'>
               <div class='custom-file'>
                 <input
@@ -240,7 +240,7 @@ export default (props) => {
                 </label>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div class='row'>
             <div class='offset-md-4 col-4'>
@@ -280,7 +280,7 @@ export default (props) => {
             initialValues={
                 bahanReducer.result
                 ? bahanReducer.result
-                : { materialname: '', amount: '', materialneeded: '', materialunit: '', stock: '' }
+                : { materialname: '', amount: '', materialneeded: '', materialunit: '', prounit: '',stock: '' }
             }
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
@@ -289,6 +289,7 @@ export default (props) => {
               formData.append('amount', values.amount);
               formData.append('materialneeded', values.materialneeded);
               formData.append('materialunit', values.materialunit);
+              formData.append('prounit', values.prounit);
               formData.append('stock', values.stock);
               let result = multiselect.map((arr) => arr.value);
 

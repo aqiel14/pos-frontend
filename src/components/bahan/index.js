@@ -43,6 +43,7 @@ export default (props) => {
     () => [
         {
             Header: 'Products Name',
+            id: 'alias',
             // id:'hidden_productname',
             accessor: (data) => {
               let output = [];
@@ -66,27 +67,32 @@ export default (props) => {
         //     });
         //   }
         // },
+        {
+          Header: 'Amount',
+          accessor: (data)=>{
+            return data.amount+' '+data.prounit
+          },
+        },
       {
         Header: 'Material Name',
-        id: 'alias',
         accessor: 'materialname', // accessor is the "key" in the data
       },
+      
       {
-        Header: 'Amount of Product',
-        accessor: 'amount',
+        Header: 'Material needed',
+        accessor: (data)=>{
+          return data.materialneeded+' '+data.materialunit
+        },
       },
-      {
-        Header: 'Materials Needed',
-        accessor: 'materialneeded'
-      },
-      {
-        Header: 'Material Unit',
-        accessor: 'materialunit',
-      },
-      {
-        Header: 'Stock',
-        accessor: 'stock',
-      },
+     
+      // {
+      //   Header: 'Material Stock',
+      //   accessor: 'stock',
+      // },
+      // {
+      //   Header: 'Material Unit',
+      //   accessor: 'materialunit',
+      // },
       {
         Header: 'Action',
         accessor: '_id',

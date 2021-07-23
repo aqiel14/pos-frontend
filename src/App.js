@@ -3,6 +3,7 @@ import Header from './components/header';
 import Sidebar from './components/sidebar';
 import Footer from './components/footer/';
 import SalesDashboard from './components/salesdashboard';
+import ProductionDashboard from './components/productiondashboard';
 import Login from './components/login';
 import Register from './components/register';
 import Profile from './components/profile';
@@ -70,6 +71,7 @@ const App = (props) => {
           <Route path='/register' component={Register} />
           <Route path='/login/:notify?' component={Login} />
           <SecuredRoute path='/sales/dashboard' component={SalesDashboard} />
+          <SecuredRoute path='/productiondashboard' component={ProductionDashboard} />
           <SecuredRoute path='/profile' component={Profile} />
           <SecuredRoute exact path='/posmachine/' component={PosMachineIndex} />
           <SecuredRoute

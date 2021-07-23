@@ -207,8 +207,32 @@ export default (props) => {
               </small>
             ) : null}
           </div>
+          <div className='form-group input-group has-feedback'>
+            <input
+              type='text'
+              name='cost'
+              onChange={handleChange}
+              value={values.cost}
+              className='form-control'
+              placeholder='Cost'
+              className={
+                errors.cost && touched.cost
+                  ? 'form-control is-invalid'
+                  : 'form-control'
+              }
+            />
+            <div class='input-group-append col-3'>
+              <div class='input-group-text'>
+              </div>
+            </div>
+            {errors.cost && touched.cost ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.cost}
+              </small>
+            ) : null}
+          </div>
           {renderSelectwithSelected()}
-          <div class='form-group '>{showPreviewImage(values)}</div>
+          {/* <div class='form-group '>{showPreviewImage(values)}</div>
 
           <div class='form-group '>
             <div class='input-group col-5'>
@@ -237,7 +261,7 @@ export default (props) => {
                 </label>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div class='row'>
             <div class='offset-md-4 col-4'>
@@ -277,7 +301,7 @@ export default (props) => {
             initialValues={
               listproReducer.result
                 ? listproReducer.result
-                : { tanggal: '', quantity: '', order: '', duedate: '', description: '' }
+                : { tanggal: '', quantity: '', order: '', duedate: '', description: '', cost: '' }
             }
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
@@ -287,6 +311,7 @@ export default (props) => {
               formData.append('order', values.order);
               formData.append('duedate', values.duedate);
               formData.append('description', values.description);
+              formData.append('cost', values.cost);
              
               let result = multiselect.map((arr) => arr.value);
 
