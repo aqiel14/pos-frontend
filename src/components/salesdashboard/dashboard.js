@@ -9,7 +9,6 @@ import swal from 'sweetalert';
 import loading from '../../assets/image/loading.gif';
 import Table from '../Table';
 import _ from 'lodash';
-import { eachMonthOfInterval } from 'date-fns';
 require('moment-recur');
 
 export default (props) => {
