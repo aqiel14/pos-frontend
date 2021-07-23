@@ -49,6 +49,26 @@ export const ORDER_FETCHING = 'ORDER_FETCHING';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILED = 'ORDER_FAILED';
 export const ORDER_CLEAR = 'ORDER_CLEAR';
+//Machine Information
+export const MACHINE_FETCHING = 'MACHINE_FETCHING';
+export const MACHINE_SUCCESS = 'MACHINE_SUCCESS';
+export const MACHINE_FAILED = 'MACHINE_FAILED';
+export const MACHINE_CLEAR = 'MACHINE_CLEAR';
+
+//List Production
+export const LISTPRO_FETCHING = 'LISTPRO_FETCHING';
+export const LISTPRO_SUCCESS = 'LISTPRO_SUCCESS';
+export const LISTPRO_FAILED = 'LISTPRO_FAILED';
+export const LISTPRO_CLEAR = 'LISTPRO_CLEAR';
+
+//Bahan Produksi
+export const BAHAN_FETCHING = 'BAHAN_FETCHING';
+export const BAHAN_SUCCESS = 'BAHAN_SUCCESS';
+export const BAHAN_FAILED = 'BAHAN_FAILED';
+export const BAHAN_CLEAR = 'BAHAN_CLEAR';
+//FETCH
+
+
 
 export const USER_FETCHING = 'USER_FETCHING';
 export const USER_SUCCESS = 'USER_SUCCESS';

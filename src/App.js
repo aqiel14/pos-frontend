@@ -21,6 +21,15 @@ import ProductIndex from './components/product/index';
 import CreateOrder from './components/order/create';
 import OrderIndex from './components/order/index';
 import OrderReceipt from './components/order/receipt.js';
+import MachineIndex from './components/machine/index';
+import MachineCreate from './components/machine/create';
+import MachineUpdate from './components/machine/update';
+import ListproIndex from './components/listpro/index';
+import ListproCreate from './components/listpro/create';
+import ListproUpdate from './components/listpro/update';
+import BahanIndex from './components/bahan/index';
+import BahanCreate from './components/bahan/create';
+import BahanUpdate from './components/bahan/update';
 import {
   BrowserRouter as Router,
   Route,
@@ -74,6 +83,7 @@ const App = (props) => {
           <SecuredRoute exact path='/branch/' component={BranchIndex} />
           <SecuredRoute path='/branch/create' component={BranchCreate} />
           <SecuredRoute path='/branch/update/:id' component={BranchUpdate} />
+          
           <SecuredRoute exact path='/supplier/' component={SupplierIndex} />
           <SecuredRoute path='/supplier/create' component={SupplierCreate} />
           <SecuredRoute
@@ -87,6 +97,18 @@ const App = (props) => {
           <SecuredRoute exact path='/order/create' component={CreateOrder} />
 
           <SecuredRoute exact path='/order/' component={OrderIndex} />
+          <SecuredRoute exact path='/machine/' component={MachineIndex} />
+          <SecuredRoute path='/machine/create' component={MachineCreate} />
+          <SecuredRoute path='/machine/update/:id' component={MachineUpdate} />
+          
+          <SecuredRoute exact path='/listpro/' component={ListproIndex} />
+          <SecuredRoute path='/listpro/create' component={ListproCreate} />
+          <SecuredRoute path='/listpro/update/:id' component={ListproUpdate} />
+
+          <SecuredRoute exact path='/bahan/' component={BahanIndex} />
+          <SecuredRoute path='/bahan/create'  component={BahanCreate} />
+          <SecuredRoute path='/bahan/update/:id' component={BahanUpdate} />
+          
 
           <Route path='/' exact component={Login} />
           {loginActions.isLoggedIn() && <Footer />}
