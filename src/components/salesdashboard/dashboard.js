@@ -9,6 +9,7 @@ import swal from 'sweetalert';
 import loading from '../../assets/image/loading.gif';
 import Table from '../Table';
 import _ from 'lodash';
+import { eachMonthOfInterval } from 'date-fns';
 require('moment-recur');
 
 export default (props) => {
@@ -169,7 +170,7 @@ export default (props) => {
           dailyprofit += data.order_profit;
         }
       });
-      return dailyprofit;
+      return 'Rp. ' + dailyprofit;
     }
   }
 
@@ -270,13 +271,6 @@ export default (props) => {
     });
   }
 
-  function rubah(angka) {
-    var reverse = angka.split('').reverse().join(''),
-      ribuan = reverse.match(/\d{1,3}/g);
-    ribuan = ribuan.join('.').split('').reverse().join('');
-    return ribuan;
-  }
-
   return (
     <div className='content-wrapper'>
       {/* Content Header (Page header) */}
@@ -327,7 +321,7 @@ export default (props) => {
               {/* small box */}
               <div className='small-box bg-success'>
                 <div className='inner'>
-                  <h3>{rubah(dailyProfit())}</h3>
+                  <h3>{dailyProfit()}</h3>
                   <p>Today's Profit</p>
                 </div>
                 <div className='icon'>
