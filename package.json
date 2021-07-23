@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "chart.js": "^3.3.2",
     "chartjs-plugin-datalabels": "^2.0.0",
+    "date-fns": "^2.23.0",
     "dotenv": "^10.0.0",
     "formik": "^2.2.8",
     "jsonwebtoken": "^8.5.1",

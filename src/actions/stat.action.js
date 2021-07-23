@@ -1,4 +1,5 @@
 import { STAT_FETCHING, STAT_SUCCESS, STAT_FAILED, server } from '../constants';
+import { STAT2_FETCHING, STAT2_SUCCESS, STAT2_FAILED } from '../constants';
 import { httpClient } from './../utils/HttpClient';
 
 export const setSTATStateToFetching = () => ({
@@ -13,26 +14,41 @@ export const setSTATStateToSuccess = (payload) => ({
   payload,
 });
 
-export const getCurrentInventoryStat = () => {
-  return async (dispatch) => {
-    dispatch(setSTATStateToFetching());
-    const response = await httpClient.get(
-      server.STAT_ENDPOINT + '/current_inventory'
-    );
-    let result = response.data.data.flat().map((item) => {
-      return {
-        name: item.name,
-        stock: item.stock,
-      };
-    });
-    if (response.data.result == 'success') {
-      dispatch(setSTATStateToSuccess(result));
-    } else if (response.data.result === 'error') {
-      dispatch(setSTATStateToFailed());
-      return response.data.message;
-    }
-  };
-};
+// export const Index = () => {
+//   return async (dispatch) => {
+//     dispatch(setOrderStateToFetching);
+//     const response = await httpClient.get(
+//       process.env.REACT_APP_API_URL + server.ORDER_URL
+//     );
+//     if (response.data.result == 'success') {
+//       // console.log(response.data);
+//       dispatch(setOrderStateToSuccess(response.data.data));
+//     } else if (response.data.result === 'error') {
+//       dispatch(setOrderStateToFailed());
+//       swal('Error!', response.data.message, 'error');
+//     }
+//   };
+// };
+
+// export const getCurrentInventoryStat = () => {
+//   return async (dispatch) => {
+//     dispatch(setSTATStateToFetching());
+//     const response = await httpClient.get(
+//       server.STAT_ENDPOINT + '/current_inventory'
+//     );
+//     let result = response.data.data.flat().map((item) => {
+//       return {
+//         name: item.name,
+//       };
+//     });
+//     if (response.data.result == 'success') {
+//       dispatch(setSTATStateToSuccess(result));
+//     } else if (response.data.result === 'error') {
+//       dispatch(setSTATStateToFailed());
+//       return response.data.message;
+//     }
+//   };
+// };
 
 export const getCurrentOrderStat = () => {
   return async (dispatch) => {
@@ -40,13 +56,9 @@ export const getCurrentOrderStat = () => {
     const response = await httpClient.get(
       server.STAT_ENDPOINT + '/current_order'
     );
-    let result = response.data.data.flat(3).map((order) => {
-      return {
-        date: order.created,
-      };
-    });
+
     if (response.data.result == 'success') {
-      dispatch(setSTATStateToSuccess(result));
+      dispatch(setSTATStateToSuccess(response.data.data));
     } else if (response.data.result === 'error') {
       dispatch(setSTATStateToFailed());
       return response.data.message;
