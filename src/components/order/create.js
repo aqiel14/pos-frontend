@@ -33,7 +33,7 @@ export default (props) => {
       {
         Header: 'Action',
         accessor: (data) => {
-          if (data.status !== 'DONE') {
+          if (data.stock > 0) {
             return (
               <Link
                 type='button'

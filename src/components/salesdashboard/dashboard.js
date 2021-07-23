@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { server } from '../../constants';
 import { useSelector, useDispatch } from 'react-redux';
-import { Line } from 'react-chartjs-2';
+import { Chart, Line } from 'react-chartjs-2';
 import * as StatActions from '../../actions/stat.action';
 import 'chartjs-plugin-datalabels';
 import moment from 'moment';
@@ -9,34 +9,32 @@ import swal from 'sweetalert';
 import loading from '../../assets/image/loading.gif';
 import Table from '../Table';
 import _ from 'lodash';
+import { eachMonthOfInterval } from 'date-fns';
 require('moment-recur');
 
 export default (props) => {
   const [profitData, setProfitData] = useState([]);
   const statReducer = useSelector(({ statReducer }) => statReducer);
-  const stat2Reducer = useSelector(({ stat2Reducer }) => stat2Reducer);
   const [data, setData] = useState([]);
   const dispatch = useDispatch();
   const today = moment();
-  let initialprofit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  let asd = moment('07/01/2021').monthWeek();
+  const initialprofit = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
       return props.history.push('/login');
     }
     dispatch(StatActions.getCurrentOrderStat());
-    console.log(monthlyData());
-    insertData(monthlyData());
-
-    // if (statReducer.result);
   }, []);
 
   useEffect(() => {
     if (statReducer.result) {
       chart();
+      console.log(monthlyData());
+      insertData(monthlyData());
+      console.log(initialprofit);
     }
-  }, []);
+  }, [statReducer.result]);
 
   const columns = React.useMemo(
     () => [
@@ -169,7 +167,7 @@ export default (props) => {
           dailyprofit += data.order_profit;
         }
       });
-      return 'Rp. ' + dailyprofit;
+      return dailyprofit;
     }
   }
 
@@ -233,41 +231,57 @@ export default (props) => {
   }
 
   function insertData(monthlydata) {
-    monthlydata[0].map((data) => {
-      let monthnumber = data[0];
-      let profit = data[1];
+    if (statReducer.result) {
+      monthlydata[0].map((data) => {
+        let monthnumber = data[0];
+        let profit = data[1];
 
-      switch (monthnumber) {
-        case '1':
-          return (initialprofit[0] += profit);
-        case '2':
-          return (initialprofit[1] += profit);
-        case '3':
-          return (initialprofit[2] += profit);
-        case '4':
-          return (initialprofit[3] += profit);
-        case '5':
-          return (initialprofit[4] += profit);
-        case '6':
-          return (initialprofit[5] += profit);
-        case '7':
-          return (initialprofit[5] += profit);
-        case '8':
-          return (initialprofit[7] += profit);
-        case '9':
-          return (initialprofit[8] += profit);
-        case '10':
-          return (initialprofit[9] += profit);
-        case '11':
-          return (initialprofit[10] += profit);
-        case '12':
-          return (initialprofit[11] += profit);
-        default:
-          console.log('gaada hari');
-      }
+        switch (monthnumber) {
+          case '1':
+            return (initialprofit[0] += profit);
+          case '2':
+            return (initialprofit[1] += profit);
+          case '3':
+            return (initialprofit[2] += profit);
+          case '4':
+            return (initialprofit[3] += profit);
+          case '5':
+            return (initialprofit[4] += profit);
+          case '6':
+            return (initialprofit[5] += profit);
+          case '7':
+            return (initialprofit[5] += profit);
+          case '8':
+            return (initialprofit[7] += profit);
+          case '9':
+            return (initialprofit[8] += profit);
+          case '10':
+            return (initialprofit[9] += profit);
+          case '11':
+            return (initialprofit[10] += profit);
+          case '12':
+            return (initialprofit[11] += profit);
+          default:
+            console.log('gaada hari');
+        }
 
-      // console.log('Profit order ini: ' + initialprofit);
-    });
+        // console.log('Profit order ini: ' + initialprofit);
+      });
+    }
+  }
+
+  function convertToRupiah(angka) {
+    var rupiah = '';
+    var angkarev = angka.toString().split('').reverse().join('');
+    for (var i = 0; i < angkarev.length; i++)
+      if (i % 3 == 0) rupiah += angkarev.substr(i, 3) + '.';
+    return (
+      'Rp. ' +
+      rupiah
+        .split('', rupiah.length - 1)
+        .reverse()
+        .join('')
+    );
   }
 
   return (
@@ -304,7 +318,7 @@ export default (props) => {
               {/* small box */}
               <div className='small-box bg-info'>
                 <div className='inner'>
-                  <h3>{todaysOrders()}</h3>
+                  <h3>#{todaysOrders()}</h3>
                   <p>Todays orders</p>
                 </div>
                 <div className='icon'>
@@ -320,7 +334,7 @@ export default (props) => {
               {/* small box */}
               <div className='small-box bg-success'>
                 <div className='inner'>
-                  <h3>{dailyProfit()}</h3>
+                  <h3>{convertToRupiah(Number(dailyProfit()))}</h3>
                   <p>Today's Profit</p>
                 </div>
                 <div className='icon'>
@@ -336,7 +350,7 @@ export default (props) => {
               {/* small box */}
               <div className='small-box bg-warning'>
                 <div className='inner'>
-                  <h3>{weeklyProfit()}</h3>
+                  <h3>{convertToRupiah(Number(weeklyProfit()))}</h3>
                   <p>Last 7 days Profit</p>
                 </div>
                 <div className='icon'>
@@ -352,7 +366,7 @@ export default (props) => {
               {/* small box */}
               <div className='small-box bg-danger'>
                 <div className='inner'>
-                  <h3>{monthlyProfit()}</h3>
+                  <h3>{convertToRupiah(Number(monthlyProfit()))}</h3>
                   <p>Last 30 days Profit</p>
                 </div>
                 <div className='icon'>

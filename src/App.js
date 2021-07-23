@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/header';
 import Sidebar from './components/sidebar';
 import Footer from './components/footer/';
+import Home from './components/home/home';
 import SalesDashboard from './components/salesdashboard';
 import ProductionDashboard from './components/productiondashboard';
 import Login from './components/login';
@@ -74,7 +75,10 @@ const App = (props) => {
           <Route path='/register' component={Register} />
           <Route path='/login/:notify?' component={Login} />
           <SecuredRoute path='/sales/dashboard' component={SalesDashboard} />
-          <SecuredRoute path='/productiondashboard' component={ProductionDashboard} />
+          <SecuredRoute
+            path='/productiondashboard'
+            component={ProductionDashboard}
+          />
           <SecuredRoute path='/profile' component={Profile} />
           <SecuredRoute exact path='/posmachine/' component={PosMachineIndex} />
           <SecuredRoute
@@ -88,7 +92,7 @@ const App = (props) => {
           <SecuredRoute exact path='/branch/' component={BranchIndex} />
           <SecuredRoute path='/branch/create' component={BranchCreate} />
           <SecuredRoute path='/branch/update/:id' component={BranchUpdate} />
-          
+
           <SecuredRoute exact path='/supplier/' component={SupplierIndex} />
           <SecuredRoute path='/supplier/create' component={SupplierCreate} />
           <SecuredRoute
@@ -101,7 +105,10 @@ const App = (props) => {
 
           <SecuredRoute exact path='/material/' component={MaterialIndex} />
           <SecuredRoute path='/material/create' component={MaterialCreate} />
-          <SecuredRoute path='/material/update/:id' component={MaterialUpdate} />
+          <SecuredRoute
+            path='/material/update/:id'
+            component={MaterialUpdate}
+          />
 
           <SecuredRoute exact path='/order/create' component={CreateOrder} />
 
@@ -109,16 +116,15 @@ const App = (props) => {
           <SecuredRoute exact path='/machine/' component={MachineIndex} />
           <SecuredRoute path='/machine/create' component={MachineCreate} />
           <SecuredRoute path='/machine/update/:id' component={MachineUpdate} />
-          
+
           <SecuredRoute exact path='/listpro/' component={ListproIndex} />
           <SecuredRoute path='/listpro/create' component={ListproCreate} />
           <SecuredRoute path='/listpro/update/:id' component={ListproUpdate} />
 
           <SecuredRoute exact path='/bahan/' component={BahanIndex} />
-          <SecuredRoute path='/bahan/create'  component={BahanCreate} />
+          <SecuredRoute path='/bahan/create' component={BahanCreate} />
           <SecuredRoute path='/bahan/update/:id' component={BahanUpdate} />
-          
-
+          <SecuredRoute path='/home' component={Home} />
           <Route path='/' exact component={Login} />
           {loginActions.isLoggedIn() && <Footer />}
         </div>
