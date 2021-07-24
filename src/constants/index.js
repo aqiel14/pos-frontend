@@ -51,6 +51,11 @@ export const STAT_FETCHING = 'STAT_FETCHING';
 export const STAT_SUCCESS = 'STAT_SUCCESS';
 export const STAT_FAILED = 'STAT_FAILED';
 
+//DASHBOARD COSTSTATS
+export const COSTSTAT_FETCHING = 'COSTSTAT_FETCHING';
+export const COSTSTAT_SUCCESS = 'COSTSTAT_SUCCESS';
+export const COSTSTAT_FAILED = 'COSTSTAT_FAILED';
+
 export const ORDER_FETCHING = 'ORDER_FETCHING';
 export const ORDER_SUCCESS = 'ORDER_SUCCESS';
 export const ORDER_FAILED = 'ORDER_FAILED';
@@ -97,6 +102,7 @@ export const server = {
   TOKEN_KEY: `token`,
   REFRESH_TOKEN_KEY: `refresh_token`,
   STAT_ENDPOINT: `stat`,
+  COSTSTAT_ENDPOINT: `coststat`,
 };
 
 export const Roles = [
