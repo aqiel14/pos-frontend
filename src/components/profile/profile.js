@@ -7,36 +7,6 @@ import fs from 'fs';
 import { server } from '../../constants';
 const FILE_SIZE = 160 * 1024;
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/gif', 'image/png'];
-const ProfileSchema = Yup.object().shape({
-  avatars: Yup.mixed()
-    .required('A file is required')
-    .test(
-      'fileSize',
-      'File too large',
-      (value) => value && value.size <= FILE_SIZE
-    )
-    .test(
-      'fileFormat',
-      'Unsupported Format',
-      (value) => value && SUPPORTED_FORMATS.includes(value.type)
-    ),
-  username: Yup.string()
-    .min(2, 'username is Too Short!')
-    .max(50, 'username is Too Long!')
-    .required('username is Required'),
-  company_name: Yup.string()
-    .min(2, 'firstname is Too Short!')
-    .max(30, 'firstname is Too Long!')
-    .required('firstname is Required'),
-  phone: Yup.number('Phone number is use only number')
-    .min(10, 'Phone number must be 10 characters!')
-    .required('Phone number is Required'),
-  address: Yup.string()
-    .min(12, 'address is Too Short!')
-    .max(50, 'address is Too Long!')
-    .required('address is Required'),
-  email: Yup.string().email('Invalid email').required('Email is Required'),
-});
 
 class Profile extends Component {
   constructor(props) {
@@ -78,7 +48,7 @@ class Profile extends Component {
           src={
             values.file_obj != null
               ? values.file_obj
-              : process.env.REACT_APP_BACKEND_URL + 'images/user.png'
+              : 'http://localhost:8080/images/user.png'
           }
           class='profile-user-img img-fluid img-circle'
           width={100}
@@ -90,9 +60,11 @@ class Profile extends Component {
     await axios
       .get(process.env.REACT_APP_API_URL + 'profile/id/' + id)
       .then((response) => {
-        console.log(response.data);
+        console.log(response.data.data.avatars);
         document.getElementById('avatars').src =
-          process.env.REACT_APP_USER_IMAGE_PATH + '/' + response.data.avatars;
+          process.env.REACT_APP_BACKEND_URL +
+          'images/user/' +
+          response.data.data.avatars;
         // profile.setAttribute("src",);
         this.setState({ response: response.data });
       })
@@ -220,7 +192,7 @@ class Profile extends Component {
             ) : null}
           </div>
           <div className='form-group has-feedback'>
-            <label htmlFor='phone'>phone number</label>
+            <label htmlFor='phone'>Phone Number</label>
             <input
               onChange={handleChange}
               value={values.phone}
@@ -240,7 +212,7 @@ class Profile extends Component {
             ) : null}
           </div>
           <div className='form-group has-feedback'>
-            <label htmlFor='address'>address</label>
+            <label htmlFor='address'>Address</label>
             <textarea
               onChange={handleChange}
               value={values.address}
@@ -297,7 +269,7 @@ class Profile extends Component {
                 {/* general form elements */}
                 <div className='card card-primary'>
                   <div className='card-header'>
-                    <h3 className='card-title'>update profile</h3>
+                    <h3 className='card-title'>Update Profile</h3>
                   </div>
                   {/* /.card-header */}
                   {/* form start */}

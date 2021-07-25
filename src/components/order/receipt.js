@@ -166,7 +166,7 @@ export default (props) => {
                         <h2>tax</h2>
                       </td>
                       <td className='payment'>
-                        <h2>Rp. {Math.round(result.total * 0.07)}</h2>
+                        <h2>Rp. 0</h2>
                       </td>
                     </tr>
                     <tr className='tabletitle'>
@@ -175,9 +175,7 @@ export default (props) => {
                         <h2>Total</h2>
                       </td>
                       <td className='payment'>
-                        <h2>
-                          Rp. {result.total + Math.round(result.total * 0.07)}
-                        </h2>
+                        <h2>Rp. {result.total}</h2>
                       </td>
                     </tr>
                   </tbody>

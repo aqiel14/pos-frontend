@@ -32,7 +32,7 @@ export default (props) => {
   useEffect(() => {
     initilizeRecaptcha();
     if (localStorage.getItem(server.TOKEN_KEY) != null) {
-      return props.history.push('/dashboard');
+      return props.history.push('/home');
     }
     let notify = props.match.params['notify'];
     if (notify !== undefined) {
