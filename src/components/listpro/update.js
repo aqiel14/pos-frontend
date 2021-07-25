@@ -231,6 +231,25 @@ export default (props) => {
               </small>
             ) : null}
           </div>
+          <div className="form-group input-group has-feedback">
+            <select
+              name="status"
+              id="status"
+              onChange={handleChange}
+              value={values.status}
+              className="form-control"
+              placeholder="Status"
+            >
+              <option value="">Status</option>
+              <option value="not_done">Not Done</option>
+              <option value="done">Done</option>
+            </select>
+            {errors.status && touched.status ? (
+              <small id="passwordHelp" class="text-danger">
+                {errors.status}
+              </small>
+            ) : null}
+          </div>
           {renderSelectwithSelected()}
           {/* <div class='form-group '>{showPreviewImage(values)}</div>
 
@@ -301,7 +320,7 @@ export default (props) => {
             initialValues={
               listproReducer.result
                 ? listproReducer.result
-                : { tanggal: '', quantity: '', order: '', duedate: '', description: '', cost: '' }
+                : { tanggal: '', quantity: '', order: '', duedate: '', description: '', cost: '', status: '' }
             }
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
@@ -312,6 +331,7 @@ export default (props) => {
               formData.append('duedate', values.duedate);
               formData.append('description', values.description);
               formData.append('cost', values.cost);
+              formData.append('status', values.status);
              
               let result = multiselect.map((arr) => arr.value);
 

@@ -109,6 +109,10 @@ export default (props) => {
         },
       },
       {
+        Header: 'Status',
+        accessor: 'status', // accessor is the "key" in the data
+      },
+      {
         Header: 'Action',
         accessor: '_id',
         Cell: ({ cell: { value } }) => {
