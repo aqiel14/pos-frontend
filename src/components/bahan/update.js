@@ -112,6 +112,7 @@ export default (props) => {
               </small>
             ) : null}
           </div>
+
           <div className='form-group input-group has-feedback'>
             <textarea
               name='amount'
@@ -153,7 +154,7 @@ export default (props) => {
               </small>
             ) : null}
           </div>
-          {/* <div className='form-group input-group has-feedback'>
+          <div className='form-group input-group has-feedback'>
           <select 
           name='materialunit'
           id="materialunit"
@@ -171,7 +172,7 @@ export default (props) => {
                 {errors.materialunit}
               </small>
             ) : null}
-          </div> */}
+          </div>
           <div className='form-group input-group has-feedback'>
           <select 
           name='prounit'
@@ -190,57 +191,7 @@ export default (props) => {
               </small>
             ) : null}
           </div>
-          {/* <div className='form-group input-group has-feedback'>
-            <input
-              type='text'
-              name='stock'
-              onChange={handleChange}
-              value={values.stock}
-              className='form-control'
-              placeholder='Stock'
-              className={
-                errors.stock && touched.stock
-                  ? 'form-control is-invalid'
-                  : 'form-control'
-              }
-            />
-            {errors.stock && touched.stock ? (
-              <small id='passwordHelp' class='text-danger'>
-                {errors.stock}
-              </small>
-            ) : null}
-          </div> */}
           {renderSelectwithSelected()}
-          {/* <div class='form-group '>{showPreviewImage(values)}</div> */}
-
-          {/* <div class='form-group '>
-            <div class='input-group col-5'>
-              <div class='custom-file'>
-                <input
-                  type='file'
-                  onChange={(e) => {
-                    e.preventDefault();
-                    setFieldValue('frontimage', e.target.files[0]); // for upload
-                    setFieldValue(
-                      'file_obj',
-                      URL.createObjectURL(e.target.files[0])
-                    ); // for preview image
-                  }}
-                  name='frontimage'
-                  className={
-                    errors.frontimage && touched.frontimage
-                      ? 'form-control is-invalid'
-                      : 'form-control'
-                  }
-                  accept='image/*'
-                  id='exampleInputFile'
-                />
-                <label class='custom-file-label' for='exampleInputFile'>
-                  file
-                </label>
-              </div>
-            </div>
-          </div> */}
 
           <div class='row'>
             <div class='offset-md-4 col-4'>

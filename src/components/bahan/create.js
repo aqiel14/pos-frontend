@@ -42,26 +42,6 @@ export default (props) => {
             />
           </div>
           <div className='form-group input-group has-feedback'>
-            <input
-              type='text'
-              name='materialname'
-              onChange={handleChange}
-              value={values.materialname}
-              className='form-control'
-              placeholder='Material Name'
-              className={
-                errors.alias && touched.alias
-                  ? 'form-control is-invalid'
-                  : 'form-control'
-              }
-            />
-            {errors.alias && touched.alias ? (
-              <small id='passwordHelp' class='text-danger'>
-                {errors.materialname}
-              </small>
-            ) : null}
-          </div>
-          <div className='form-group input-group has-feedback'>
             <textarea
               name='amount'
               onChange={handleChange}
@@ -85,6 +65,27 @@ export default (props) => {
               </small>
             ) : null}
           </div>
+          <div className='form-group input-group has-feedback'>
+            <input
+              type='text'
+              name='materialname'
+              onChange={handleChange}
+              value={values.materialname}
+              className='form-control'
+              placeholder='Material Name'
+              className={
+                errors.alias && touched.alias
+                  ? 'form-control is-invalid'
+                  : 'form-control'
+              }
+            />
+            {errors.alias && touched.alias ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.materialname}
+              </small>
+            ) : null}
+          </div>
+         
           <div className='form-group input-group has-feedback'>
             <input
               type='text'
@@ -113,7 +114,7 @@ export default (props) => {
             onChange={handleChange}
               value={values.materialunit}
               className='form-control'
-              placeholder='Order Unit'>
+              placeholder='Material Unit'>
                 <option value="">Material Unit</option>
               <option value="kg">KG</option>
               <option value="pcs">PCS</option>
@@ -219,7 +220,6 @@ export default (props) => {
               materialneeded: '',
               materialunit: '',
               prounit: '',
-              stock: '',
               product: '',
               status: '',
             }}
@@ -230,7 +230,6 @@ export default (props) => {
               formData.append('materialneeded', values.materialneeded);
               formData.append('materialunit', values.materialunit);
               formData.append('prounit', values.prounit);
-              formData.append('stock', values.stock);
               formData.append('status', values.status);
               let result = multiselect.map((arr) => arr.value);
               console.log(result);

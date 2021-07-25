@@ -88,7 +88,7 @@ export default (props) => {
               value={values.order}
               className='form-control'
               placeholder='Order Unit'>
-  <option value=""></option>
+  <option value="">Quantity Unit</option>
   <option value="kg">KG</option>
   <option value="pcs">PCS</option>
 </select>
@@ -170,7 +170,7 @@ export default (props) => {
               value={values.status}
               className='form-control'
               placeholder='Status'>
-                <option value="">Material Unit</option>
+                <option value="">Status</option>
               <option value="not_done">Not Done</option>
               <option value="done">Done</option>
               </select>
@@ -208,7 +208,7 @@ export default (props) => {
         <div className='container-fluid'>
           <div className='row mb-2'>
             <div className='col-sm-6'>
-              <h1 className='m-0 text-dark'>Create Production Material Data</h1>
+              <h1 className='m-0 text-dark'>Create Production Data</h1>
             </div>
           </div>
           {/* /.row */}
