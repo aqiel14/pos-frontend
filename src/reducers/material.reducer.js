@@ -3,6 +3,7 @@ import {
     MATERIAL_SUCCESS,
     MATERIAL_FAILED,
     MATERIAL_CLEAR,
+    FETCHOPTION_SUCCESS,
   } from '../constants';
   
   const initialState = {
@@ -21,7 +22,9 @@ import {
         return { ...state, isFetching: false, isError: false, result: payload };
       case MATERIAL_CLEAR:
         return { ...state, result: null, isFetching: false, isError: false };
-      default:
+        case FETCHOPTION_SUCCESS:
+          return { ...state, isFetching: false, isError: false, options: payload };
+        default:
         return state;
     }
   };
