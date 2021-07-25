@@ -1,11 +1,5 @@
-<<<<<<< Updated upstream
 import { STAT_FETCHING, STAT_SUCCESS, STAT_FAILED, server } from '../constants';
 import { httpClient } from './../utils/HttpClient';
-=======
-import { STAT_FETCHING, STAT_SUCCESS, STAT_FAILED, server } from "../constants";
-import { STAT2_FETCHING, STAT2_SUCCESS, STAT2_FAILED } from "../constants";
-import { httpClient } from "./../utils/HttpClient";
->>>>>>> Stashed changes
 
 export const setSTATStateToFetching = () => ({
   type: STAT_FETCHING,
@@ -70,7 +64,6 @@ export const getCurrentOrderStat = () => {
     }
   };
 };
-<<<<<<< Updated upstream
 
 export const getCurrentListproStat = () => {
   return async (dispatch) => {
@@ -91,5 +84,3 @@ export const getCurrentListproStat = () => {
     }
   };
 };
-=======
->>>>>>> Stashed changes
