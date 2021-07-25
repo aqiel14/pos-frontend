@@ -1,5 +1,4 @@
 import { STAT_FETCHING, STAT_SUCCESS, STAT_FAILED, server } from '../constants';
-import { STAT2_FETCHING, STAT2_SUCCESS, STAT2_FAILED } from '../constants';
 import { httpClient } from './../utils/HttpClient';
 
 export const setSTATStateToFetching = () => ({

@@ -99,7 +99,7 @@ export const submitPayment = (data) => {
   return (dispatch, getState) => {
     httpClient.post(server.ORDER_URL, data).then(() => {
       swal({
-        title: 'Your are made sale success',
+        title: 'Order Submitted',
         icon: 'success',
       }).then(function () {
         window.location.reload();

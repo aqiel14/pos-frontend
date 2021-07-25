@@ -54,6 +54,26 @@ export default (props) => {
             </small>
           ) : null}
         </div>
+        {/* <div className='form-group has-feedback'>
+          <input
+            type='text'
+            name='company_name'
+            onChange={handleChange}
+            value={values.company_name}
+            className='form-control'
+            placeholder='Company Name'
+            className={
+              errors.company_name && touched.company_name
+                ? 'form-control is-invalid'
+                : 'form-control'
+            }
+          />
+          {errors.company_name && touched.company_name ? (
+            <small id='passwordHelp' class='text-danger'>
+              {errors.company_name}
+            </small>
+          ) : null}
+        </div> */}
         <div className='form-group has-feedback'>
           <input
             type='text'
@@ -167,6 +187,7 @@ export default (props) => {
             <Formik
               initialValues={{
                 fullname: '',
+                // company_name:'',
                 email: '',
                 password: '',
                 confirm_password: '',
