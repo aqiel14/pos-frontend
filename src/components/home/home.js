@@ -100,7 +100,7 @@ export default (props) => {
                         <div className='text-container'>
                           <h6>Production</h6>
                           <p>Modul Produksi Merupakan modul yang menyediakan layanan
-                            berupa fitur untuk membantu dalam mencatat dan mengelola data
+                            berupa fitur untuk membantu pengguna dalam mencatat dan mengelola data
                             produksi
                           </p>
                         </div>
