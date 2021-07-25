@@ -3,18 +3,7 @@ import { Formik } from "formik";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import * as materialActions from "../../actions/material.action";
-import * as Yup from "yup";
 import { server } from "../../constants";
-
-const Create_Schema = Yup.object().shape({
-  materialname: Yup.string()
-    .min(2, "name is Too Short!")
-    .max(50, "name is Too Long!")
-    .required("name is Required"),
-  price: Yup.string().required(),
-  qty: Yup.string().required(),
-  unit: Yup.string().required(),
-});
 
 export default (props) => {
   const dispatch = useDispatch();
@@ -57,32 +46,47 @@ export default (props) => {
               options={materialReducer.options ? materialReducer.options : null}
             />
           </div>
-          <div class="row">
-            <div className="form-group col-md-6 input-group has-feedback">
-              <input
-                type="text"
-                name="price"
-                onChange={handleChange}
-                value={values.price}
-                className="form-control"
-                placeholder="Price"
-                className={
-                  errors.price && touched.price
-                    ? "form-control is-invalid"
-                    : "form-control"
-                }
-              />
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-user"></span>
-                </div>
-              </div>
-              {errors.price && touched.price ? (
-                <small id="passwordHelp" class="text-danger">
-                  {errors.price}
-                </small>
-              ) : null}
+          <div className="form-group input-group has-feedback">
+            <input
+              type="date"
+              name="tanggal"
+              onChange={handleChange}
+              value={values.tanggal}
+              className="form-control"
+              placeholder="Created Date"
+              className={
+                errors.tanggal && touched.tanggal
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+            />
+            {errors.tanggal && touched.tanggal ? (
+              <small id="passwordHelp" class="text-danger">
+                {errors.tanggal}
+              </small>
+            ) : null}
+          </div>
+          <div className="form-group input-group has-feedback">
+            <textarea
+              name="price"
+              onChange={handleChange}
+              value={values.price}
+              className="form-control"
+              placeholder="Price"
+              className={
+                errors.price && touched.price
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+            ></textarea>
+            <div class="">
+              <div class=""></div>
             </div>
+            {errors.price && touched.price ? (
+              <small id="passwordHelp" class="text-danger">
+                {errors.price}
+              </small>
+            ) : null}
           </div>
           <div className="form-group input-group has-feedback">
             <input
@@ -98,41 +102,64 @@ export default (props) => {
                   : "form-control"
               }
             />
+
             {errors.qty && touched.qty ? (
               <small id="passwordHelp" class="text-danger">
                 {errors.qty}
               </small>
             ) : null}
           </div>
-          <div class="row">
-            <div className="form-group col-md-6 input-group has-feedback">
-              <input
-                type="text"
-                name="unit"
-                onChange={handleChange}
-                value={values.unit}
-                className="form-control"
-                placeholder="Satuan Unit"
-                className={
-                  errors.unit && touched.unit
-                    ? "form-control is-invalid"
-                    : "form-control"
-                }
-              />
-              <div class="input-group-append">
-                <div class="input-group-text">
-                  <span class="fas fa-user"></span>
-                </div>
-              </div>
-              {errors.unit && touched.unit ? (
-                <small id="passwordHelp" class="text-danger">
-                  {errors.unit}
-                </small>
-              ) : null}
+          <div className="form-group input-group has-feedback">
+            <textarea
+              name="unit"
+              onChange={handleChange}
+              value={values.unit}
+              className="form-control"
+              placeholder="Unit"
+              className={
+                errors.unit && touched.unit
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+            ></textarea>
+            <div class="">
+              <div class=""></div>
             </div>
+            {errors.unit && touched.unit ? (
+              <small id="passwordHelp" class="text-danger">
+                {errors.unit}
+              </small>
+            ) : null}
           </div>
+
+          {/* <div className='form-group input-group has-feedback'>
+            <input
+              type='text'
+              name='stock'
+              onChange={handleChange}
+              value={values.stock}
+              className='form-control'
+              placeholder='Material Stock'
+              className={
+                errors.stock && touched.stock
+                  ? 'form-control is-invalid'
+                  : 'form-control'
+              }
+            />
+            <div class=''>
+              <div class=''>
+                
+              </div>
+            </div>
+            {errors.stock && touched.stock ? (
+              <small id='passwordHelp' class='text-danger'>
+                {errors.stock}
+              </small>
+            ) : null}
+          </div> */}
+
           <div class="row">
-            <div class="offset-md-1 col-4">
+            <div class="offset-md-4 col-4">
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -153,7 +180,7 @@ export default (props) => {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1 className="m-0 text-dark">Create Material</h1>
+              <h1 className="m-0 text-dark">Create Material Data</h1>
             </div>
           </div>
           {/* /.row */}
@@ -161,10 +188,12 @@ export default (props) => {
         {/* /.container-fluid */}
       </div>
       <div className="content">
-        <div class="card card-success">
+        <div class="card card-primary">
           <div class="card-header"></div>
+
           <Formik
             initialValues={{
+              tanggal: "",
               price: "",
               qty: "",
               unit: "",
@@ -172,6 +201,7 @@ export default (props) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
+              formData.append("tanggal", values.tanggal);
               formData.append("price", values.price);
               formData.append("qty", values.qty);
               formData.append("unit", values.unit);
@@ -181,6 +211,7 @@ export default (props) => {
               dispatch(materialActions.Create(formData, props.history));
               setSubmitting(false);
             }}
+            // validationSchema={Create_Schema}
           >
             {/* {this.showForm()}            */}
             {(props) => showForm(props)}

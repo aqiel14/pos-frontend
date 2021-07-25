@@ -63,7 +63,23 @@ export const getDropdownBahan = () => {
     }
   };
 };
+export const getSingleMaterial = (id) => {
+  return async (dispatch) => {
+    dispatch(setMaterialStateToFetching());
+    const response = await httpClient.get(
+      process.env.REACT_APP_API_URL + "material/" + id
+    );
 
+    if (response.data.result == "success") {
+      dispatch(getDropdownBahan()).then(() => {
+        dispatch(setMaterialStateToSuccess(response.data.data));
+      });
+    } else if (response.data.result === "error") {
+      dispatch(setMaterialStateToFailed());
+      swal("Error!", response.data.message, "error");
+    }
+  };
+};
 export const Create = (values, history) => {
   return async (dispatch) => {
     dispatch(setMaterialStateToFetching());
@@ -78,20 +94,6 @@ export const Create = (values, history) => {
         history.goBack();
         dispatch(Index());
       });
-    } else if (response.data.result === "error") {
-      dispatch(setMaterialStateToFailed());
-      swal("Error!", response.data.message, "error");
-    }
-  };
-};
-export const getSingleMaterial = (id) => {
-  return async (dispatch) => {
-    dispatch(setMaterialStateToFetching());
-    const response = await httpClient.get(
-      process.env.REACT_APP_API_URL + "material/" + id
-    );
-    if (response.data.result == "success") {
-      dispatch(setMaterialStateToSuccess(response.data.data));
     } else if (response.data.result === "error") {
       dispatch(setMaterialStateToFailed());
       swal("Error!", response.data.message, "error");

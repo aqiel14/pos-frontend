@@ -7,22 +7,20 @@ import swal from "sweetalert";
 import Table from "../Table";
 import "./material.css";
 import loading from "../../assets/image/loading.gif";
-import _, { join } from "lodash";
+import _ from "lodash";
 export default (props) => {
   const materialReducer = useSelector(({ materialReducer }) => materialReducer);
-  const [data, setData] = useState([]);
   const dispatch = useDispatch();
+  const [data, setData] = useState([]);
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
       return props.history.push("/login");
     }
     dispatch(materialActions.Index());
-    if (materialReducer.result) {
-      console.log(materialReducer.result);
-    } else {
-      console.log("asd");
-    }
   }, []);
+  useEffect(() => {
+    setData(materialReducer.result);
+  }, [materialReducer.result]);
 
   function confirmDelete(id) {
     swal({
@@ -40,6 +38,7 @@ export default (props) => {
       }
     });
   }
+
   const columns = React.useMemo(
     () => [
       {
@@ -51,6 +50,14 @@ export default (props) => {
             output.push(data.materialname);
           });
           return output.join(", ");
+        },
+      },
+      {
+        Header: "Created Date",
+        accessor: "tanggal",
+        Cell: ({ cell: { value } }) => {
+          let sliced = value.slice(0, -14);
+          return sliced;
         },
       },
       {
@@ -66,7 +73,7 @@ export default (props) => {
         },
       },
       {
-        Header: "Total",
+        Header: "Total Price",
         accessor: (data) => {
           let total = data.price * data.qty;
           return "Rp. " + total;
@@ -102,13 +109,15 @@ export default (props) => {
     ],
     []
   );
+
   const Holdon = (columns) => {
     if (materialReducer.result) {
       return <Table columns={columns} data={materialReducer.result} />;
     } else {
-      return <p>Loading..</p>;
+      return <img class="img-fluid img-rounded" src={loading} />;
     }
   };
+
   return (
     <div className="content-wrapper">
       {/* Content Header (Page header) */}
@@ -116,7 +125,7 @@ export default (props) => {
         <div className="container-fluid">
           <div className="row mb-2">
             <div className="col-sm-6">
-              <h1 className="m-0 text-dark">Material Data</h1>
+              <h1 className="m-0 text-dark"> Material Data</h1>
             </div>
           </div>
           {/* /.row */}
