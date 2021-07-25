@@ -54,7 +54,7 @@ export default (props) => {
             </small>
           ) : null}
         </div>
-        <div className='form-group has-feedback'>
+        {/* <div className='form-group has-feedback'>
           <input
             type='text'
             name='company_name'
@@ -73,7 +73,7 @@ export default (props) => {
               {errors.company_name}
             </small>
           ) : null}
-        </div>
+        </div> */}
         <div className='form-group has-feedback'>
           <input
             type='text'
@@ -187,6 +187,7 @@ export default (props) => {
             <Formik
               initialValues={{
                 fullname: '',
+                // company_name:'',
                 email: '',
                 password: '',
                 confirm_password: '',
