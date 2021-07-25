@@ -19,6 +19,7 @@ export default (props) => {
   const dispatch = useDispatch();
   const today = moment();
   const initialcost = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  
 
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
@@ -38,6 +39,18 @@ export default (props) => {
 
   const columns = React.useMemo(
     () => [
+     
+      {
+        Header: 'Product Name',
+        // id:'hidden_productname',
+        accessor: (data) => {
+          let output = [];
+          _.map(data.product, (data) => {
+            output.push(data.name);
+          });
+          return output.join(', ');
+      }
+    },
       {
         Header: 'Production Date',
         id: 'alias',
