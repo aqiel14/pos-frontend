@@ -219,7 +219,7 @@ export default (props) => {
         {/* /.container-fluid */}
       </div>
       <div className='content'>
-        <div class='card card-success'>
+        <div class='card card-primary'>
           <div class='card-header'></div>
 
           <Formik
