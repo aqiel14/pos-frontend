@@ -67,9 +67,9 @@ export default (props) => {
           </a>
         </li>
         <li className='nav-item d-none d-sm-inline-block'>
-          <a href='../../index3.html' className='nav-link'>
+          <Link href='/home' className='nav-link'>
             Home
-          </a>
+          </Link>
         </li>
       </ul>
       {/* SEARCH FORM */}
