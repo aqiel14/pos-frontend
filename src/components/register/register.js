@@ -177,7 +177,9 @@ export default (props) => {
       <div className='register-box'>
         <div className='register-logo'>
           <a href='../../index2.html'>
-            <b>Basic</b>POS
+            <b>UMS</b>
+            <br />
+            <p>UMKM Management System</p>
           </a>
         </div>
         <div className='card'>
