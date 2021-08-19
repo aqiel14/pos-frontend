@@ -41,7 +41,7 @@ export default () => {
     <CredentialProvider value={role.credentials}>
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         {/* Brand Logo */}
-        <a href="../../index3.html" className="brand-link">
+        <a href="../../home.html" className="brand-link">
           <span className="brand-text font-weight-light">
             UMKM-SharedService
           </span>
@@ -62,19 +62,19 @@ export default () => {
                 </Link>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link to="/posmachine" className="nav-link">
                   <i className="nav-icon fas fa-th" />
                   <p>Pos Machine</p>
                 </Link>
-              </li>
+              </li> */}
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link to="/branch" className="nav-link">
                   <i className="nav-icon fas fa-building" />
                   <p>Branch</p>
                 </Link>
-              </li>
+              </li> */}
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-chart-bar"></i>
@@ -89,12 +89,12 @@ export default () => {
                       <p>Dashboard</p>
                     </Link>
                   </li>
-                  <li class="nav-item">
+                  {/* <li class="nav-item">
                     <Link to="/product" className="nav-link">
                       <i className="nav-icon fas fa-truck" />
                       <p>Product</p>
                     </Link>
-                  </li>
+                  </li> */}
                   <li class="nav-item">
                     <Link to="/order" className="nav-link">
                       <i className="nav-icon fas fa-cash-register" />

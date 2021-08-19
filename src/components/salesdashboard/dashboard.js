@@ -30,7 +30,7 @@ export default (props) => {
   useEffect(() => {
     if (statReducer.result) {
       chart();
-      console.log(monthlyData());
+      // console.log(monthlyData());
       insertData(monthlyData());
       console.log(initialprofit);
     }
@@ -142,13 +142,13 @@ export default (props) => {
   };
 
   function todaysOrders() {
-    let day = today.format('d');
+    let day = today.format('L');
     if (statReducer.result) {
       let count = 0;
       statReducer.result.map((data) => {
-        let thatdaysorder = moment(data.created).format('d');
+        let thatdaysorder = moment(data.created).format('L');
 
-        if (thatdaysorder == day) {
+        if (thatdaysorder === day) {
           count++;
         }
       });
@@ -157,13 +157,13 @@ export default (props) => {
   }
 
   function dailyProfit() {
-    let day = today.format('d');
+    let day = today.format('L');
     if (statReducer.result) {
       let dailyprofit = 0;
       statReducer.result.map((data) => {
-        let thatdaysorder = moment(data.created).format('d');
+        let thatdaysorder = moment(data.created).format('L');
 
-        if (thatdaysorder == day) {
+        if (thatdaysorder === day) {
           dailyprofit += data.order_profit;
         }
       });
@@ -178,6 +178,7 @@ export default (props) => {
       let weeklyprofit = 0;
       statReducer.result.map((data) => {
         let bool = moment(data.created).isAfter(seven_days_ago);
+
         if (bool == true) {
           weeklyprofit += data.order_profit;
         }
@@ -222,7 +223,7 @@ export default (props) => {
     if (statReducer.result) {
       let months = [
         statReducer.result.map((data) => {
-          let createdmonth = moment(data).format('M');
+          let createdmonth = moment(data.created).format('M');
           return [createdmonth, data.order_profit];
         }),
       ];
@@ -250,7 +251,7 @@ export default (props) => {
           case '6':
             return (initialprofit[5] += profit);
           case '7':
-            return (initialprofit[5] += profit);
+            return (initialprofit[6] += profit);
           case '8':
             return (initialprofit[7] += profit);
           case '9':

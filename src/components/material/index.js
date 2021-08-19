@@ -53,6 +53,10 @@ export default (props) => {
         },
       },
       {
+        Header: "Supplier Name",
+        accessor: "suppliername",
+      },
+      {
         Header: "Created Date",
         accessor: "tanggal",
         Cell: ({ cell: { value } }) => {
