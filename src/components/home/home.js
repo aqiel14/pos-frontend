@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { server } from "../../constants";
-import "./home.css";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { server } from '../../constants';
+import './home.css';
+import { Link } from 'react-router-dom';
 export default (props) => {
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
-      return props.history.push("/login");
+      return props.history.push('/login');
     }
   }, []);
 
   return (
-    <div className="content-wrapper">
+    <div className='content-wrapper'>
       {/* Content Header (Page header) */}
-      <div className="content-header">
-        <div className="container-fluid">
-          <div className="row mb-2">
-            <div className="col-sm-6"></div>
+      <div className='content-header'>
+        <div className='container-fluid'>
+          <div className='row mb-2'>
+            <div className='col-sm-6'></div>
           </div>
           {/* /.row */}
         </div>
@@ -23,27 +23,27 @@ export default (props) => {
       </div>
       {/* /.content-header */}
       {/* Main content */}
-      <div className="center">
-        <img src="https://i.imgur.com/6SMC4x1.png" alt />
+      <div className='center'>
+        <img src='https://i.imgur.com/6SMC4x1.png' alt />
       </div>
-      <section className="content ">
+      <section className='content '>
         {/* Topic Cards */}
-        <div id="cards_landscape_wrap-2">
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-4">
+        <div id='cards_landscape_wrap-2'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-sm-4'>
                 <a href>
-                  <div className="card-flyer">
-                    <Link to="/sales/dashboard">
-                      <div className="text-box">
-                        <div className="image-box">
+                  <div className='card-flyer'>
+                    <Link to='/sales/dashboard'>
+                      <div className='text-box'>
+                        <div className='image-box'>
                           <img
-                            src="https://cdn.pixabay.com/photo/2018/03/30/15/11/deer-3275594_960_720.jpg"
+                            src='https://i.imgur.com/4xsyGjW.png'
                             alt
-                            href="/"
+                            href='/'
                           />
                         </div>
-                        <div className="text-container">
+                        <div className='text-container'>
                           <h6>Sales</h6>
                           <p>
                             Modul Sales Merupakan modul yang menyediakan layanan
@@ -57,18 +57,15 @@ export default (props) => {
                   </div>
                 </a>
               </div>
-              <div className="col-sm-4">
+              <div className='col-sm-4'>
                 <a href>
-                  <div className="card-flyer">
-                    <Link to="/warehouse/dashboard">
-                      <div className="text-box">
-                        <div className="image-box">
-                          <img
-                            src="https://cdn.pixabay.com/photo/2018/04/09/19/55/low-poly-3305284_960_720.jpg"
-                            alt
-                          />
+                  <div className='card-flyer'>
+                    <Link to='/warehouse/dashboard'>
+                      <div className='text-box'>
+                        <div className='image-box'>
+                          <img src='https://i.imgur.com/P8REJMG.png' alt />
                         </div>
-                        <div className="text-container">
+                        <div className='text-container'>
                           <h6>Warehouse</h6>
                           <p>
                             Modul Warehouse Merupakan modul yang menyediakan
@@ -82,18 +79,15 @@ export default (props) => {
                   </div>
                 </a>
               </div>
-              <div className="col-sm-4">
+              <div className='col-sm-4'>
                 <a href>
-                  <div className="card-flyer">
-                    <Link to="/productiondashboard">
-                      <div className="text-box">
-                        <div className="image-box">
-                          <img
-                            src="https://cdn.pixabay.com/photo/2018/04/06/13/46/poly-3295856_960_720.png"
-                            alt
-                          />
+                  <div className='card-flyer'>
+                    <Link to='/productiondashboard'>
+                      <div className='text-box'>
+                        <div className='image-box'>
+                          <img src='https://i.imgur.com/lZac4rW.png' alt />
                         </div>
-                        <div className="text-container">
+                        <div className='text-container'>
                           <h6>Production</h6>
                           <p>
                             Modul Produksi Merupakan modul yang menyediakan
