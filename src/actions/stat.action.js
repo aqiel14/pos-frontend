@@ -1,5 +1,5 @@
-import { STAT_FETCHING, STAT_SUCCESS, STAT_FAILED, server } from '../constants';
-import { httpClient } from './../utils/HttpClient';
+import { STAT_FETCHING, STAT_SUCCESS, STAT_FAILED, server } from "../constants";
+import { httpClient } from "./../utils/HttpClient";
 
 export const setSTATStateToFetching = () => ({
   type: STAT_FETCHING,
@@ -69,16 +69,16 @@ export const getCurrentListproStat = () => {
   return async (dispatch) => {
     dispatch(setSTATStateToFetching());
     const response = await httpClient.get(
-      server.STAT_ENDPOINT + '/current_listpro'
+      server.STAT_ENDPOINT + "/current_listpro"
     );
     let result = response.data.data.flat(3).map((listpro) => {
       return {
         date: listpro.created,
       };
     });
-    if (response.data.result == 'success') {
+    if (response.data.result == "success") {
       dispatch(setSTATStateToSuccess(result));
-    } else if (response.data.result === 'error') {
+    } else if (response.data.result === "error") {
       dispatch(setSTATStateToFailed());
       return response.data.message;
     }

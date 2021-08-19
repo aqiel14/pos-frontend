@@ -114,6 +114,26 @@ export default (props) => {
           </div> */}
           <div className="form-group input-group has-feedback">
             <input
+              type="text"
+              name="suppliername"
+              onChange={handleChange}
+              value={values.suppliername}
+              className="form-control"
+              placeholder="Supplier Name"
+              className={
+                errors.suppliername && touched.suppliername
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+            />
+            {errors.suppliername && touched.suppliername ? (
+              <small id="passwordHelp" class="text-danger">
+                {errors.suppliername}
+              </small>
+            ) : null}
+          </div>
+          <div className="form-group input-group has-feedback">
+            <input
               type="date"
               name="tanggal"
               onChange={handleChange}
@@ -267,16 +287,18 @@ export default (props) => {
               materialReducer.result
                 ? materialReducer.result
                 : {
+                    suppliername: "",
                     tanggal: "",
                     price: "",
                     qty: "",
                     unit: "",
-                    bahan: materialReducer.result.bahan,
+                    bahan: "",
                   }
             }
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
               formData.append("id", materialReducer.result._id);
+              formData.append("suppliername", values.suppliername);
               formData.append("tanggal", values.tanggal);
               formData.append("price", values.price);
               formData.append("qty", values.qty);

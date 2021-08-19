@@ -26,7 +26,7 @@ export default (props) => {
     }).then((willDelete) => {
       if (willDelete) {
         dispatch(productActions.Remove(id));
-        swal("Poof! Your Branch data has been deleted!", {
+        swal("Poof! Your Product data has been deleted!", {
           icon: "success",
         });
       }
@@ -50,6 +50,10 @@ export default (props) => {
         Header: "Product Name",
         accessor: "name",
         id: "alias", // accessor is the "key" in the data
+      },
+      {
+        Header: "Supplier Name",
+        accessor: "suppliername",
       },
       {
         Header: "Stock",

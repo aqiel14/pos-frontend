@@ -48,6 +48,26 @@ export default (props) => {
           </div>
           <div className="form-group input-group has-feedback">
             <input
+              type="text"
+              name="suppliername"
+              onChange={handleChange}
+              value={values.suppliername}
+              className="form-control"
+              placeholder="Supplier Name"
+              className={
+                errors.suppliername && touched.suppliername
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
+            />
+            {errors.suppliername && touched.suppliername ? (
+              <small id="passwordHelp" class="text-danger">
+                {errors.suppliername}
+              </small>
+            ) : null}
+          </div>
+          <div className="form-group input-group has-feedback">
+            <input
               type="date"
               name="tanggal"
               onChange={handleChange}
@@ -193,6 +213,7 @@ export default (props) => {
 
           <Formik
             initialValues={{
+              suppliername: "",
               tanggal: "",
               price: "",
               qty: "",
@@ -201,6 +222,7 @@ export default (props) => {
             }}
             onSubmit={(values, { setSubmitting }) => {
               let formData = new FormData();
+              formData.append("suppliername", values.suppliername);
               formData.append("tanggal", values.tanggal);
               formData.append("price", values.price);
               formData.append("qty", values.qty);
