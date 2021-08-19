@@ -41,7 +41,7 @@ export default () => {
     <CredentialProvider value={role.credentials}>
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         {/* Brand Logo */}
-        <a href="../../index3.html" className="brand-link">
+        <a href="../../home.html" className="brand-link">
           <span className="brand-text font-weight-light">
             UMKM-SharedService
           </span>

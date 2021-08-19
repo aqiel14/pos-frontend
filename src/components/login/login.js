@@ -145,7 +145,7 @@ export default (props) => {
     <div class='login-page'>
       <div className='register-box'>
         <div className='register-logo'>
-          <a href='../../index2.html'>
+          <a>
             <b>UMS</b>
             <br />
             <p>UMKM Management System</p>
