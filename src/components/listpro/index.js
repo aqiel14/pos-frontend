@@ -49,6 +49,15 @@ export default (props) => {
         id:'id', // accessor is the "key" in the data
       },
       {
+        Header: 'Created Date',
+        accessor: 'created',
+        id: 'created',
+        Cell: ({ cell: { value } }) => {
+          let sliced = value.slice(0, -14);
+          return sliced;
+        },
+      },
+      {
         Header: 'Product Name',
         // id:'hidden_productname',
         accessor: (data) => {
@@ -59,6 +68,8 @@ export default (props) => {
           return output.join(', ');
       }
     },
+   
+
       // {
       //   Header: 'Products Name',
       //   accessor: 'product',

@@ -120,7 +120,7 @@ export default (props) => {
       ],
       datasets: [
         {
-          label: '# of profit made',
+          label: '# of production cost',
           fill: true,
           lineTension: 0.1,
           backgroundColor: 'rgba(75,192,192,0.4)',
@@ -151,7 +151,7 @@ export default (props) => {
     if (coststatReducer.result) {
       let count = 0;
       coststatReducer.result.map((data) => {
-        let thatdayslistpro = moment(data.created).format('d');
+        let thatdayslistpro = moment(data.tanggal).format('d');
 
         if (thatdayslistpro == day) {
           count++;
@@ -166,7 +166,7 @@ export default (props) => {
     if (coststatReducer.result) {
       let dailycost = 0;
       coststatReducer.result.map((data) => {
-        let thatdayslistpro = moment(data.created).format('d');
+        let thatdayslistpro = moment(data.tanggal).format('d');
 
         if (thatdayslistpro == day) {
           dailycost += data.cost;
@@ -182,7 +182,7 @@ export default (props) => {
     if (coststatReducer.result) {
       let weeklycost = 0;
       coststatReducer.result.map((data) => {
-        let bool = moment(data.created).isAfter(seven_days_ago);
+        let bool = moment(data.tanggal).isAfter(seven_days_ago);
         if (bool == true) {
           weeklycost += data.cost;
         }
@@ -196,7 +196,7 @@ export default (props) => {
     if (coststatReducer.result) {
       let monthlycost = 0;
       coststatReducer.result.map((data) => {
-        let bool = moment(data.created).isAfter(thirty_days_ago);
+        let bool = moment(data.tanggal).isAfter(thirty_days_ago);
         if (bool == true) {
           monthlycost += data.cost;
         }
@@ -217,7 +217,6 @@ export default (props) => {
       months.push(monthname);
     }
     console.log(months);
-
     return months.reverse();
   }
 
@@ -227,7 +226,7 @@ export default (props) => {
     if (coststatReducer.result) {
       let months = [
         coststatReducer.result.map((data) => {
-          let createdmonth = moment(data).format('M');
+          let createdmonth = moment(data.tanggal).format('M');
           return [createdmonth, data.cost];
         }),
       ];

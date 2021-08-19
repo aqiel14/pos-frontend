@@ -91,7 +91,7 @@ export default (props) => {
             onChange={handleChange}
             value={values._id}
           />
-          <div className='form-group input-group has-feedback'>
+       <div className='form-group input-group has-feedback'>
             <input
               type='date'
               name='tanggal'
@@ -105,7 +105,7 @@ export default (props) => {
                   : 'form-control'
               }
             />
-            <div class='input-group-append'>
+            <div class='input-group-append col-3'>
               <div class='input-group-text'>
               </div>
             </div>
@@ -241,7 +241,7 @@ export default (props) => {
               placeholder="Status"
             >
               <option value="">Status</option>
-              <option value="not_done">Not Done</option>
+              <option value="progress">Progress</option>
               <option value="done">Done</option>
             </select>
             {errors.status && touched.status ? (

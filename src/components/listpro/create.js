@@ -171,7 +171,7 @@ export default (props) => {
               className='form-control'
               placeholder='Status'>
                 <option value="">Status</option>
-              <option value="not_done">Not Done</option>
+              <option value="progress">progress</option>
               <option value="done">Done</option>
               </select>
             <div class=''>
