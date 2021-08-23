@@ -19,7 +19,6 @@ export default (props) => {
   const dispatch = useDispatch();
   const today = moment();
   const initialcost = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-  
 
   useEffect(() => {
     if (localStorage.getItem(server.TOKEN_KEY) === null) {
@@ -39,18 +38,18 @@ export default (props) => {
 
   const columns = React.useMemo(
     () => [
-     
       {
         Header: 'Product Name',
         // id:'hidden_productname',
         accessor: (data) => {
           let output = [];
           _.map(data.product, (data) => {
-            output.push(data.name);
+            output.push(data);
+            console.log(data);
           });
           return output.join(', ');
-      }
-    },
+        },
+      },
       {
         Header: 'Production Date',
         id: 'alias',
@@ -59,14 +58,12 @@ export default (props) => {
           let sliced = value.slice(0, -14);
           return sliced;
         },
-       
       },
-     
+
       {
         Header: 'Quantity',
-        accessor: (data)=>{
-          return data.quantity+' '+data.order
-        
+        accessor: (data) => {
+          return data.quantity + ' ' + data.order;
         },
       },
       {
@@ -83,8 +80,8 @@ export default (props) => {
       },
       {
         Header: 'Cost',
-        accessor: (data)=>{
-          return 'Rp. '+data.cost
+        accessor: (data) => {
+          return 'Rp. ' + data.cost;
         },
       },
       {
@@ -177,12 +174,12 @@ export default (props) => {
   }
 
   function weeklyCost() {
-    let day = today.format('d');
+    let day = today;
     var seven_days_ago = moment().subtract(7, 'days');
     if (coststatReducer.result) {
       let weeklycost = 0;
       coststatReducer.result.map((data) => {
-        let bool = moment(data.tanggal).isAfter(seven_days_ago);
+        let bool = moment(data.tanggal).isBetween(seven_days_ago, day);
         if (bool == true) {
           weeklycost += data.cost;
         }
@@ -192,11 +189,12 @@ export default (props) => {
   }
 
   function monthlyCost() {
+    let day = today;
     var thirty_days_ago = moment().subtract(30, 'days');
     if (coststatReducer.result) {
       let monthlycost = 0;
       coststatReducer.result.map((data) => {
-        let bool = moment(data.tanggal).isAfter(thirty_days_ago);
+        let bool = moment(data.tanggal).isBetween(thirty_days_ago, day);
         if (bool == true) {
           monthlycost += data.cost;
         }
@@ -318,7 +316,6 @@ export default (props) => {
         <div className='container-fluid'>
           {/* Small boxes (Stat box) */}
           <div className='row'>
-           
             {/* ./col */}
             <div className='col-lg-3 col-6'>
               {/* small box */}

@@ -114,58 +114,58 @@ export default (props) => {
         <div className='row'>
           <div className='col'>
             <button
-              onClick={() => onClickGiven(1000, values.given, setFieldValue)}
+              onClick={() => onClickGiven(100000, values.given, setFieldValue)}
               className='btn btn-primary btn-lg btn-block'
               type='button'
             >
-              1000
+              100000
             </button>
           </div>
           <div className='col'>
             <button
-              onClick={() => onClickGiven(500, values.given, setFieldValue)}
+              onClick={() => onClickGiven(50000, values.given, setFieldValue)}
               className='btn btn-primary btn-lg btn-block'
               type='button'
             >
-              500
+              50000
             </button>
           </div>
           <div className='col'>
             <button
-              onClick={() => onClickGiven(100, values.given, setFieldValue)}
+              onClick={() => onClickGiven(10000, values.given, setFieldValue)}
               className='btn btn-primary btn-lg btn-block'
               type='button'
             >
-              100
+              10000
             </button>
           </div>
         </div>
         <div className='row'>
           <div className='col'>
             <button
-              onClick={() => onClickGiven(50, values.given, setFieldValue)}
+              onClick={() => onClickGiven(5000, values.given, setFieldValue)}
               className='btn btn-primary btn-lg btn-block'
               type='button'
             >
-              50
+              5000
             </button>
           </div>
           <div className='col'>
             <button
-              onClick={() => onClickGiven(20, values.given, setFieldValue)}
+              onClick={() => onClickGiven(2000, values.given, setFieldValue)}
               className='btn btn-primary btn-lg btn-block'
               type='button'
             >
-              20
+              2000
             </button>
           </div>
           <div className='col'>
             <button
-              onClick={() => onClickGiven(10, values.given, setFieldValue)}
+              onClick={() => onClickGiven(1000, values.given, setFieldValue)}
               className='btn btn-primary btn-lg btn-block'
               type='button'
             >
-              10
+              1000
             </button>
           </div>
         </div>
