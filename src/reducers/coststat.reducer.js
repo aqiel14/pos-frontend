@@ -1,5 +1,4 @@
 import { COSTSTAT_FETCHING, COSTSTAT_SUCCESS, COSTSTAT_FAILED } from '../constants';
-import { STAT2_FETCHING, STAT2_SUCCESS, STAT2_FAILED } from '../constants';
 
 const initialState = {
   isFetching: false,

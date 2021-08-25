@@ -44,7 +44,11 @@ export default (props) => {
         accessor: (data) => {
           let output = [];
           _.map(data.product, (data) => {
+<<<<<<< Updated upstream
             output.push(data);
+=======
+            output.push(data.name);
+>>>>>>> Stashed changes
             console.log(data);
           });
           return output.join(', ');
